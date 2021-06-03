@@ -5,9 +5,8 @@ namespace DAL.Context
 {
     public class BaseContext : DbContext
     {
-        private const string BaseName = "NEWAIRPORT";
-
-        public BaseContext() : base(BaseName)
+        private const string connect = "NewAirport";
+        public BaseContext() : base(connect)
         {
             Database.SetInitializer(new NewAirportInitializer());
         }
