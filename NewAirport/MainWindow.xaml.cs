@@ -11,13 +11,7 @@ namespace NewAirport
         public MainWindow()
         {
             InitializeComponent();
-
-            string connect = ConfigurationManager.ConnectionStrings["NewAirport"].ConnectionString;
-            var KERNEL = new StandardKernel(new NinjectRegistration());
-
-            IUnitOfWork DB = KERNEL.Get<IUnitOfWork>();
-
-            var pupa = DB.Airplanes.GetList();
+            IUnitOfWork DB = IoC.Get<IUnitOfWork>();
         }
     }
 }

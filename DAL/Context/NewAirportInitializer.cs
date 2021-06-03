@@ -248,7 +248,7 @@ namespace DAL.Context
                 {
                     IsDeparture = true,
                     Airplane = airplaneList[0],
-                    Airport = airportList[2],
+                    Airport = airportList[6],
                     Time = new TimeSpan(12, 0, 0),
                     DayOfWeek = 2,
                     Cost = 5500,
