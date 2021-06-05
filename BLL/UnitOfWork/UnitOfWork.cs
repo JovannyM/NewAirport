@@ -23,8 +23,8 @@ namespace BLL.UnitOfWork
         }
 
         public IRepository<Airplane> Airplanes => airplaneRepos ??= new AirplaneRepos(db);
-        public IRepository<Airport> Airports => airportRepos ??= new AirportRepos(db);
-        public IRepository<Model> Models => modelRepos ??= new ModelRepos(db);
+        public IAirportRepository Airports => airportRepos ??= new AirportRepos(db);
+        public IRepository<Model> Models => modelRepos ??= new ModelRepos(db, this);
         public IRepository<Flight> Flights => flightRepos ??= new FlightRepos(db);
         public IRepository<Ticket> Tikets => ticketRepos ??= new TicketRepos(db);
         public void Save()

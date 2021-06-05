@@ -4,7 +4,7 @@ using System.Configuration;
 using BLL.Interfaces;
 using NewAirport.Utilites;
 
-namespace NewAirport
+namespace NewAirport.VVM
 {
     public partial class MainWindow
     {
