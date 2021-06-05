@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using BLL.Interfaces;
@@ -56,6 +57,29 @@ namespace BLL.Repositories
     {
         public FlightRepos(BaseContext context) : base(context, context.Flights)
         {
+            
+        }
+        public void CreateFlightsByModel(Model model)
+        {
+            DateTime date = model.StartDate;
+            while (model.DayOfWeek != (int)date.DayOfWeek)
+            {
+                date.AddDays(1);
+            }
+
+            for (;date < model.EndDate; date.AddDays(7))
+            {
+                DbSet.Add(new Flight()
+                {   
+                    Model = model,
+                    Airplane = model.Airplane,
+                    Airport = model.Airport,
+                    DateTime = date,
+                    IsDeparture = model.IsDeparture,
+                    Cost = model.Cost,
+                    Edited = false
+                });
+            }
         }
     }
 
