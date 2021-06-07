@@ -53,24 +53,37 @@ namespace BLL.Repositories
         }
     }
 
-    public class FlightRepos : AbstractRepository<Flight>
+    public class FlightRepos : AbstractRepository<Flight>, IFlightRepository
     {
-        public FlightRepos(BaseContext context) : base(context, context.Flights)
+        private IUnitOfWork UOW;
+        public FlightRepos(BaseContext context, IUnitOfWork uow) : base(context, context.Flights)
         {
-            
+            UOW = uow;
         }
+
+        public override List<Flight> GetList()
+        {
+            var ListNewFlights = base.GetList();
+            foreach (var item in ListNewFlights)
+            {
+                item.StartAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+                item.EndAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+            }
+            return ListNewFlights;
+        }
+
         public void CreateFlightsByModel(Model model)
         {
             DateTime date = model.StartDate;
             while (model.DayOfWeek != (int)date.DayOfWeek)
             {
-                date.AddDays(1);
+                date = date.AddDays(1);
             }
 
-            for (;date < model.EndDate; date.AddDays(7))
+            for (;date < model.EndDate; date = date.AddDays(7))
             {
-                DbSet.Add(new Flight()
-                {   
+                var newflight = new Flight()
+                {
                     Model = model,
                     Airplane = model.Airplane,
                     Airport = model.Airport,
@@ -78,8 +91,11 @@ namespace BLL.Repositories
                     IsDeparture = model.IsDeparture,
                     Cost = model.Cost,
                     Edited = false
-                });
+                };
+                Create(newflight);
             }
+
+            DB.SaveChanges();
         }
     }
 

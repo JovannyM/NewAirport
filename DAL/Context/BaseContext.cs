@@ -23,6 +23,8 @@ namespace DAL.Context
             modelBuilder.Entity<Airport>().ToTable("Airports");
             modelBuilder.Entity<Airplane>().ToTable("Airplanes");
             modelBuilder.Entity<Model>().ToTable("Models");
+            modelBuilder.Entity<Flight>().ToTable("Flights");
+            modelBuilder.Entity<Ticket>().ToTable("Tickets");
         }
     }
 }

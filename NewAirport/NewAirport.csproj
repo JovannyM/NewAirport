@@ -110,11 +110,16 @@
     <Compile Include="Utilites\BaseVM.cs" />
     <Compile Include="Utilites\IoC.cs" />
     <Compile Include="Utilites\NinjectRegistration.cs" />
+    <Compile Include="VVM\EditerVVM\EditerUC.xaml.cs">
+      <DependentUpon>EditerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VVM\EditerVVM\EditerVM.cs" />
     <Compile Include="VVM\MainVM.cs" />
     <Compile Include="VVM\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VVM\RelayCommand.cs" />
     <Compile Include="VVM\ScheduleVVM\ScheduleUC.xaml.cs">
       <DependentUpon>ScheduleUC.xaml</DependentUpon>
     </Compile>
@@ -123,6 +128,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VVM\EditerVVM\EditerUC.xaml" />
     <Page Include="VVM\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,6 +169,7 @@
   <ItemGroup>
     <Resource Include="Images\BackGroundMain.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -21,5 +21,16 @@ namespace NewAirport.VVM
         {
             CurrentPage = new ScheduleUC();
         }
+
+        private RelayCommand _createFlightCommand;
+
+        public RelayCommand CreateFlighRelayCommand =>
+            _createFlightCommand ??= new RelayCommand(obj =>
+            {
+                foreach (var model in DB.Models.GetList())
+                {
+                    DB.Flights.CreateFlightsByModel(model);
+                }
+            });
     }
 }

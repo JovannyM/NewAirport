@@ -9,7 +9,7 @@ namespace BLL.Interfaces
         IRepository<Airplane> Airplanes { get; }
         IAirportRepository Airports { get; }
         IRepository<Model> Models { get; }
-        IRepository<Flight> Flights { get; }
+        IFlightRepository Flights { get; }
         IRepository<Ticket> Tikets { get; }
         void Save();
     }
