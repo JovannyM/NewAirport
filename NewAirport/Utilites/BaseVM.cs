@@ -9,10 +9,12 @@ namespace NewAirport.Utilites
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected IUnitOfWork DB;
+        protected IAllUserControl AllUserControl;
 
         public BaseVM()
         {
             DB = IoC.Get<IUnitOfWork>();
+            AllUserControl = IoC.Get<IAllUserControl>();
         }
         
         [NotifyPropertyChangedInvocator]

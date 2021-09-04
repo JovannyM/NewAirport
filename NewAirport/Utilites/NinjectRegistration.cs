@@ -9,6 +9,7 @@ namespace NewAirport.Utilites
         public override void Load()
         {
             Bind<IUnitOfWork>().To<UnitOfWork>().InSingletonScope();
+            Bind<IAllUserControl>().To<AllUserContorl>().InSingletonScope();
         }
     }
 }

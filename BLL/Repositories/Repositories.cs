@@ -53,51 +53,7 @@ namespace BLL.Repositories
         }
     }
 
-    public class FlightRepos : AbstractRepository<Flight>, IFlightRepository
-    {
-        private IUnitOfWork UOW;
-        public FlightRepos(BaseContext context, IUnitOfWork uow) : base(context, context.Flights)
-        {
-            UOW = uow;
-        }
-
-        public override List<Flight> GetList()
-        {
-            var ListNewFlights = base.GetList();
-            foreach (var item in ListNewFlights)
-            {
-                item.StartAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
-                item.EndAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
-            }
-            return ListNewFlights;
-        }
-
-        public void CreateFlightsByModel(Model model)
-        {
-            DateTime date = model.StartDate;
-            while (model.DayOfWeek != (int)date.DayOfWeek)
-            {
-                date = date.AddDays(1);
-            }
-
-            for (;date < model.EndDate; date = date.AddDays(7))
-            {
-                var newflight = new Flight()
-                {
-                    Model = model,
-                    Airplane = model.Airplane,
-                    Airport = model.Airport,
-                    DateTime = date,
-                    IsDeparture = model.IsDeparture,
-                    Cost = model.Cost,
-                    Edited = false
-                };
-                Create(newflight);
-            }
-
-            DB.SaveChanges();
-        }
-    }
+  
 
     public class TicketRepos : AbstractRepository<Ticket>
     {

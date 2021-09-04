@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace NewAirport.VVM.EditerVVM
+namespace NewAirport.VVM.Editer
 {
     public partial class EditerUC : UserControl
     {

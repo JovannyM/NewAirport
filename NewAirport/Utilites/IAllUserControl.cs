@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace NewAirport.VVM.EditerVVM
+namespace NewAirport.Utilites
 {
-    class EditerVM
+    public interface IAllUserControl
     {
+        UserControl GetUC(ALLUC uc);
     }
 }

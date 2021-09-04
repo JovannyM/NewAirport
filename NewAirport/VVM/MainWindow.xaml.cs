@@ -11,7 +11,6 @@ namespace NewAirport.VVM
         public MainWindow()
         {
             InitializeComponent();
-            IUnitOfWork DB = IoC.Get<IUnitOfWork>();
         }
     }
 }

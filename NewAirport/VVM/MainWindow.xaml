@@ -13,10 +13,9 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}">
-    <!--Background="{DynamicResource MaterialDesignPaper}"-->
 
     <Window.DataContext>
-        <ViewModel:MainVM/>
+        <ViewModel:MainWindowVM/>
     </Window.DataContext>
 
     <Window.Resources>
@@ -60,14 +59,18 @@
                         Margin="4"
                         IsChecked="True"
                         Visibility="Visible"
-                        Content="Расписание"/>
+                        Content="Расписание"
+                        Command="{Binding GoToCurrentPage}"
+                        CommandParameter="Schedule"/>
                     <RadioButton
                         Style="{StaticResource MenuItem}"
                         Margin="4"
                         IsChecked="False"
                         IsEnabled="True"
                         Content="Редактор" 
-                        Visibility="Visible"/>
+                        Visibility="Visible"
+                        Command="{Binding GoToCurrentPage}"
+                        CommandParameter="Editer"/>
                     <RadioButton
                         Style="{StaticResource MenuItem}"
                         Margin="4"
@@ -78,15 +81,9 @@
                 </StackPanel>
             </Grid>
         </materialDesign:ColorZone>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <Button 
-                Width="200"
-                Margin="10"
-                HorizontalAlignment="Left"
-                Content="Сгенерировать рейсы"
-                Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                Command="{Binding CreateFlighRelayCommand}"/>
-            <ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding CurrentPage}" Height="480"/>
-        </StackPanel>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <ContentControl Content="{Binding CurrentPage}"/>
+        </Grid>
+        
     </Grid>
 </Window>

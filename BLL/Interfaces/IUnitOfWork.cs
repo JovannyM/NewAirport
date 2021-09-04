@@ -11,6 +11,7 @@ namespace BLL.Interfaces
         IRepository<Model> Models { get; }
         IFlightRepository Flights { get; }
         IRepository<Ticket> Tikets { get; }
+        event EventHandler OnUpdateDbEvent;
         void Save();
     }
 }

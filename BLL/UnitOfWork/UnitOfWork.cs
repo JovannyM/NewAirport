@@ -27,9 +27,12 @@ namespace BLL.UnitOfWork
         public IRepository<Model> Models => modelRepos ??= new ModelRepos(db, this);
         public IFlightRepository Flights => flightRepos ??= new FlightRepos(db, this);
         public IRepository<Ticket> Tikets => ticketRepos ??= new TicketRepos(db);
+
+        public event EventHandler OnUpdateDbEvent;
         public void Save()
         {
             db.SaveChanges();
+            OnUpdateDbEvent.Invoke(this, new EventArgs());
         }
         public void Dispose()
         {
