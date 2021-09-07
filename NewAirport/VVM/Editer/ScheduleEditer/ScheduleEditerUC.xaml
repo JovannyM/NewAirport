@@ -24,44 +24,92 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
-                <RowDefinition />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <StackPanel
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            
+            <TextBlock
                 Grid.Row="0"
-                Orientation="Horizontal"
-                VerticalAlignment="Center">
-                <TextBlock
-                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                    Text="Выберите рейс"
-                    VerticalAlignment="Center" />
-                <ComboBox
-                    HorizontalAlignment="Left"
-                    Margin="10 10 0 10"
-                    Height="30"
-                    Width="200"
-                    materialDesign:HintAssist.Hint="Search"
-                    materialDesign:HintAssist.HintOpacity=".26"
-                    IsEditable="True"
-                    ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
-                    DisplayMemberPath="Id" />
-            </StackPanel>
-            <StackPanel
+                Grid.Column="0"
+                Margin="10 0 0 0"
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Text="Выберите рейс"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"/>
+            <ComboBox
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                Margin="10 0 0 0"
+                Width="250"
+                materialDesign:HintAssist.Hint="Search"
+                materialDesign:HintAssist.HintOpacity=".26"
+                IsEditable="True"
+                ItemsSource="{Binding ListOfFlights}"
+                SelectedItem="{Binding SelectedFlight}"
+                DisplayMemberPath="Id"/>
+
+
+            <TextBlock
                 Grid.Row="1"
-                Orientation="Horizontal">
+                Grid.Column="0"
+                Margin="10 0 0 0"
+                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                Text="{Binding DepartureCityLabel}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right" />
+            <ComboBox
+                Margin="10 0 0 0"
+                Width="250"
+                HorizontalAlignment="Left"
+                Grid.Row="1"
+                Grid.Column="1"
+                ItemsSource="{Binding ListOfAirports}"
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding SelectedFlight.Airport}" />
+
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="10 0 0 0"
+                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                Text="{Binding DepartureDateLabel}" 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"/>
+            <StackPanel 
+                Grid.Row="2" 
+                Grid.Column="1" 
+                Orientation="Horizontal" 
+                HorizontalAlignment="Left">
                 <DatePicker
+                    Margin="10 0 0 0"
+                    Width="250"
                     SelectedDate="{Binding EditableFlight.DateTime}"
-                    Width="100"
-                    materialDesign:HintAssist.Hint="Pick Date"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                    materialDesign:HintAssist.Hint="Дата" />
                 <materialDesign:TimePicker
+                    Margin="50 0 0 0"
+                    Width="250"
                     SelectedTime="{Binding EditableFlight.DateTime}"
-                    Width="100"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                    materialDesign:HintAssist.Hint="Custom hint" />
-                <Button Command="{Binding CheckAndSave}" Content="Сохранить"></Button>
+                    materialDesign:HintAssist.Hint="Время" />
             </StackPanel>
+
+            
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Margin="0 0 20 0"
+                Command="{Binding CheckAndSave}" 
+                Content="Сохранить изменения" />
         </Grid>
     </materialDesign:Card>
-
 </UserControl>
