@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using DAL.Entities;
 using NewAirport.Utilites;
-using NewAirport.VVM.Additional;
 
-namespace NewAirport.VVM.Editer.ScheduleEditer
+namespace NewAirport.VVM.Editor.Schedule
 {
-    public class ScheduleEditerVM : BaseVM
+    public class ScheduleEditorVM : BaseVM
     {
         private ObservableCollection<Flight> _listOfFlights;
         private ObservableCollection<Airport> _listOfAirport;
@@ -19,10 +17,7 @@ namespace NewAirport.VVM.Editer.ScheduleEditer
 
         public string DepartureDateLabel
         {
-            get
-            {
-                return _departureDateLabel;
-            }
+            get => _departureDateLabel;
             private set
             {
                 _departureDateLabel = value;
@@ -32,10 +27,7 @@ namespace NewAirport.VVM.Editer.ScheduleEditer
         
         public string DepartureCityLabel
         {
-            get
-            {
-                return _departureCityLabel;
-            }
+            get => _departureCityLabel;
             private set
             {
                 _departureCityLabel = value;
@@ -86,7 +78,7 @@ namespace NewAirport.VVM.Editer.ScheduleEditer
             }
         }
 
-        public ScheduleEditerVM()
+        public ScheduleEditorVM()
         {
             ListOfFlights = new ObservableCollection<Flight>(DB.Flights.GetList());
             ListOfAirports = new ObservableCollection<Airport>(DB.Airports.GetList());
@@ -99,12 +91,12 @@ namespace NewAirport.VVM.Editer.ScheduleEditer
             ListOfAirports = new ObservableCollection<Airport>(DB.Airports.GetList());
         }
         
-        private RelayCommand checkAndSave;
+        private RelayCommand _checkAndSave;
         public RelayCommand CheckAndSave =>
-            checkAndSave ??= new RelayCommand(obj =>
+            _checkAndSave ??= new RelayCommand(obj =>
             {
-                var rezult = DB.Flights.CheckAndUpdate(EditableFlight);
-                MessageBox.Show(rezult.message);
+                var result = DB.Flights.CheckAndUpdate(EditableFlight);
+                MessageBox.Show(result.message);
             });
       
     }

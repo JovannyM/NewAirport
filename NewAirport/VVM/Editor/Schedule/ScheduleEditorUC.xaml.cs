@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace NewAirport.VVM.Editer.ScheduleEditer
+namespace NewAirport.VVM.Editor.Schedule
 {
     public partial class ScheduleEditerUC : UserControl
     {

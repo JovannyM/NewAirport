@@ -1,6 +1,6 @@
 ﻿using NewAirport.VVM.Editer;
 using NewAirport.VVM.Editer.ModelEditer;
-using NewAirport.VVM.Editer.ScheduleEditer;
+using NewAirport.VVM.Editor.Schedule;
 using NewAirport.VVM.Schedule;
 using System.Windows.Controls;
 

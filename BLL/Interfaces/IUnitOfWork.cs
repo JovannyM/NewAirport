@@ -8,9 +8,8 @@ namespace BLL.Interfaces
     {
         IRepository<Airplane> Airplanes { get; }
         IAirportRepository Airports { get; }
-        IRepository<Model> Models { get; }
+        IRepository<RecurringFlightsTemplate> Models { get; }
         IFlightRepository Flights { get; }
-        IRepository<Ticket> Tikets { get; }
         event EventHandler OnUpdateDbEvent;
         void Save();
     }

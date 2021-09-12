@@ -9,7 +9,7 @@ namespace BLL.Interfaces
 
     public interface IFlightRepository : IRepository<Flight>
     {
-        public void CreateFlightsByModel(Model model);
+        public void CreateFlightsByModel(RecurringFlightsTemplate model);
         public (bool isCreate, string message) CheckAndUpdate(Flight flight);
         
     }

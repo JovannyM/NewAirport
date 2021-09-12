@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Configuration;
+using System.Windows.Controls;
 using NewAirport.Utilites;
 using NewAirport.VVM.Schedule;
 
@@ -29,7 +30,7 @@ namespace NewAirport.VVM
                 CurrentPage = (obj as string) switch
                 {
                     "Schedule" => AllUserControl.GetUC(ALLUC.ScheduleUC),
-                    "Editer" => AllUserControl.GetUC(ALLUC.EditerUC),
+                    "Editor" => AllUserControl.GetUC(ALLUC.EditerUC),
                     _ => throw new System.NotImplementedException()
                 };
             });

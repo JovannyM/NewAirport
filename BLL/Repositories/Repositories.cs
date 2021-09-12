@@ -18,47 +18,42 @@ namespace BLL.Repositories
     public class AirportRepos : AbstractRepository<Airport>, IAirportRepository
     {
         private Airport _mainAirport;
-        public Airport MainAirport => _mainAirport ??= GetMainAirport();
+        public Airport MainAirport => _mainAirport; // ??= GetMainAirport();
+
         public AirportRepos(BaseContext context) : base(context, context.Airports)
         {
         }
-        private Airport GetMainAirport() => DB.Airports.Where(a => a.IsMain).FirstOrDefault();
+
+        //private Airport GetMainAirport() => DB.Airports.Where(a => a.IsMain).FirstOrDefault();
     }
 
-    public class ModelRepos : AbstractRepository<Model>
+    public class ModelRepos : AbstractRepository<RecurringFlightsTemplate>
     {
         private IUnitOfWork UOW;
-        public ModelRepos(BaseContext context, IUnitOfWork uow) : base(context, context.Models)
+
+        public ModelRepos(BaseContext context, IUnitOfWork uow) : base(context, context.RecurringFlightsTemplates)
         {
             UOW = uow;
         }
 
-        public override Model GetItem(int id)
+        public override RecurringFlightsTemplate GetItem(int id)
         {
             var item = base.GetItem(id);
-            item.StartAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
-            item.EndAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+            // item.DepartureAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+            // item.DestinationAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
             return item;
         }
 
-        public override List<Model> GetList()
+        public override List<RecurringFlightsTemplate> GetList()
         {
             var ListNewModels = base.GetList();
-            foreach (var item in ListNewModels)
-            {
-                item.StartAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
-                item.EndAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
-            }
+            // foreach (var item in ListNewModels)
+            // {
+            //     item.DepartureAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+            //     item.DestinationAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
+            // }
+
             return ListNewModels;
-        }
-    }
-
-  
-
-    public class TicketRepos : AbstractRepository<Ticket>
-    {
-        public TicketRepos(BaseContext context) : base(context, context.Tickets)
-        {
         }
     }
 }

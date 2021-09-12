@@ -77,7 +77,7 @@
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Text="{Binding ConverterCulture='ru-RU', StringFormat={}{0:HH:mm  dd MMMM yyyy}, Path=DateTime}" />
+                                Text="{Binding ConverterCulture='ru-RU', StringFormat={}{0:HH:mm  dd MMMM yyyy}, Path=DepartureTime}" />
 
                                     <TextBlock
                                 HorizontalAlignment="Center"

@@ -116,18 +116,18 @@
     <Compile Include="VVM\Additional\DateTimePickerWin.xaml.cs">
       <DependentUpon>DateTimePickerWin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VVM\Editer\EditerUC.xaml.cs">
-      <DependentUpon>EditerUC.xaml</DependentUpon>
+    <Compile Include="VVM\Editor\EditorUC.xaml.cs">
+      <DependentUpon>EditorUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VVM\Editer\EditerVM.cs" />
-    <Compile Include="VVM\Editer\ModelEditer\ModelEditerUC.xaml.cs">
-      <DependentUpon>ModelEditerUC.xaml</DependentUpon>
+    <Compile Include="VVM\Editor\EditorVM.cs" />
+    <Compile Include="VVM\Editor\Model\ModelEditorUC.xaml.cs">
+      <DependentUpon>ModelEditorUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VVM\Editer\ModelEditer\ModelEditerVM.cs" />
-    <Compile Include="VVM\Editer\ScheduleEditer\ScheduleEditerUC.xaml.cs">
-      <DependentUpon>ScheduleEditerUC.xaml</DependentUpon>
+    <Compile Include="VVM\Editor\Model\ModelEditorVM.cs" />
+    <Compile Include="VVM\Editor\Schedule\ScheduleEditorUC.xaml.cs">
+      <DependentUpon>ScheduleEditorUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VVM\Editer\ScheduleEditer\ScheduleEditerVM.cs" />
+    <Compile Include="VVM\Editor\Schedule\ScheduleEditorVM.cs" />
     <Compile Include="VVM\MainWindowVM.cs" />
     <Compile Include="VVM\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -143,9 +143,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="VVM\Additional\DateTimePickerWin.xaml" />
-    <Page Include="VVM\Editer\EditerUC.xaml" />
-    <Page Include="VVM\Editer\ModelEditer\ModelEditerUC.xaml" />
-    <Page Include="VVM\Editer\ScheduleEditer\ScheduleEditerUC.xaml" />
+    <Page Include="VVM\Editor\EditorUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VVM\Editor\Model\ModelEditorUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VVM\Editor\Schedule\ScheduleEditorUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="VVM\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

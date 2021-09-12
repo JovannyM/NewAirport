@@ -10,7 +10,7 @@ namespace BLL.Repositories
 {
     public class FlightRepos : AbstractRepository<Flight>, IFlightRepository
     {
-        private IUnitOfWork UOW;
+        private readonly IUnitOfWork UOW;
 
         public FlightRepos(BaseContext context, IUnitOfWork uow) : base(context, context.Flights)
         {
@@ -20,34 +20,35 @@ namespace BLL.Repositories
         public override List<Flight> GetList()
         {
             var ListNewFlights = base.GetList();
+            /*
             foreach (var item in ListNewFlights)
             {
                 item.StartAirport = item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
                 item.EndAirport = !item.IsDeparture ? UOW.Airports.MainAirport : item.Airport;
             }
-
+            */
             return ListNewFlights;
         }
 
-        public void CreateFlightsByModel(Model model)
+        public void CreateFlightsByModel(RecurringFlightsTemplate model)
         {
-            DateTime date = model.StartDate;
+            DateTime date = model.StartDateOfCreatingFlights;
             while (model.DayOfWeek != (int)date.DayOfWeek)
             {
                 date = date.AddDays(1);
             }
 
-            for (; date < model.EndDate; date = date.AddDays(7))
+            for (; date < model.EndDateOfCreatingFlights; date = date.AddDays(7))
             {
                 var newflight = new Flight()
                 {
-                    Model = model,
                     Airplane = model.Airplane,
                     Airport = model.Airport,
-                    DateTime = date,
+                    DepartureTime = date + model.DepartureTime,
+                    ArrivalTime = model.DepartureTime > model.ArrivalTime ? date.AddDays(1) + model.ArrivalTime : date + model.ArrivalTime,
+                    Edited = false,
                     IsDeparture = model.IsDeparture,
-                    Cost = model.Cost,
-                    Edited = false
+                    RecurringFlightsTemplate = model,
                 };
                 Create(newflight);
             }
@@ -79,12 +80,12 @@ namespace BLL.Repositories
 
         public (bool isCreate, string message) Check(Flight model)
         {
-            var startTimeDeparture = model.DateTime.AddMinutes(-10);
-            var endTimeDeparture = model.DateTime.AddMinutes(10);
+            var startTimeDeparture = model.ArrivalTime.AddMinutes(-10);
+            var endTimeDeparture = model.ArrivalTime.AddMinutes(10);
             var conflictsFlights = DB.Flights.Where(f => f.Id != model.Id &&
-                                                         f.DateTime >= startTimeDeparture &&
-                                                         f.DateTime <= endTimeDeparture).FirstOrDefault();
-            if (conflictsFlights != null) return (false, $"В выбранное время есть конфликтующий рейс №{conflictsFlights.Id} в {conflictsFlights.DateTime.ToString()}");
+                                                         f.ArrivalTime >= startTimeDeparture &&
+                                                         f.ArrivalTime <= endTimeDeparture).FirstOrDefault();
+            if (conflictsFlights != null) return (false, $"В выбранное время есть конфликтующий рейс №{conflictsFlights.Id} в {conflictsFlights.ArrivalTime.ToString()}");
             return (true, "");
         }
     }
