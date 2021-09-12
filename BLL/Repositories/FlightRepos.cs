@@ -30,7 +30,7 @@ namespace BLL.Repositories
     //         return ListNewFlights;
     //     }
     //
-    //     public void CreateFlightsByModel(RecurringFlightsTemplate model)
+    //     public void CreateFlightsByTemplate(RecurringFlightsTemplate model)
     //     {
     //         DateTime date = model.StartDateOfCreatingFlights;
     //         while (model.DayOfWeek != (int)date.DayOfWeek)

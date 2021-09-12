@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
@@ -20,14 +21,35 @@ namespace BLL.Repositories
         }
 
 
-        public void CreateFlightsByModel(RecurringFlightsTemplateModel model)
+        public void CreateFlightsByTemplate(int templateId)
         {
-            throw new System.NotImplementedException();
+            var template = DB.RecurringFlightsTemplates.Find(templateId);
+            DateTime date = template.StartDateOfCreatingFlights;
+            
+            
+           
+            for (;;)
+            {
+                var arrivalFlight = new Flight()
+                {
+                    RecurringFlightsTemplate = template,
+                };
+                var departureFlight = new Flight()
+                {
+                    RecurringFlightsTemplate = template,
+                    PairFlight = arrivalFlight,
+                };
+                arrivalFlight.PairFlight = departureFlight;
+                DbSet.AddRange(new []{arrivalFlight,departureFlight});
+            }
+            
         }
 
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight)
         {
             throw new System.NotImplementedException();
         }
+
+        
     }
 }

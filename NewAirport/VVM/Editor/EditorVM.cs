@@ -32,7 +32,7 @@ namespace NewAirport.VVM.Editer
             {
                 foreach (var model in DB.Templates.GetList())
                 {
-                    DB.Flights.CreateFlightsByModel(model);
+                    DB.Flights.CreateFlightsByTemplate(model.Id);
                 }
             });
 

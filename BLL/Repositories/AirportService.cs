@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Configuration;
+using System.Data.Entity;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
@@ -20,6 +22,9 @@ namespace BLL.Repositories
         }
 
 
-        public AirportModel MainAirport { get; }
+        public AirportModel MainAirport
+        {
+            get => this.GetItem(Int32.Parse(ConfigurationManager.AppSettings["Airport"]));
+        }
     }
 }
