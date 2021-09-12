@@ -70,7 +70,7 @@
                         Content="Редактор"
                         Visibility="Visible"
                         Command="{Binding GoToCurrentPage}"
-                        CommandParameter="Editer" />
+                        CommandParameter="Editor" />
                     <RadioButton
                         Style="{StaticResource MenuItem}"
                         Margin="4"

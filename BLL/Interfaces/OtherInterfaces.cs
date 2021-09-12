@@ -1,16 +1,17 @@
-﻿using DAL.Entities;
+﻿using BLL.Models;
+using DAL.Entities;
 
 namespace BLL.Interfaces
 {
-    public interface IAirportRepository : IRepository<Airport>
+    public interface IAirportRepository : IService<AirportModel>
     {
-        public Airport MainAirport { get; }
+        public AirportModel MainAirport { get; }
     }
 
-    public interface IFlightRepository : IRepository<Flight>
+    public interface IFlightRepository : IService<FlightModel>
     {
-        public void CreateFlightsByModel(RecurringFlightsTemplate model);
-        public (bool isCreate, string message) CheckAndUpdate(Flight flight);
+        public void CreateFlightsByModel(RecurringFlightsTemplateModel model);
+        public (bool isCreate, string message) CheckAndUpdate(FlightModel flight);
         
     }
 }

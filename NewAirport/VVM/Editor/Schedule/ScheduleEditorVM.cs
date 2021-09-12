@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using DAL.Entities;
+using BLL.Models;
 using NewAirport.Utilites;
 
 namespace NewAirport.VVM.Editor.Schedule
 {
     public class ScheduleEditorVM : BaseVM
     {
-        private ObservableCollection<Flight> _listOfFlights;
-        private ObservableCollection<Airport> _listOfAirport;
-        private Flight _selectedFlight;
-        private Flight _editableFlight;
+        private ObservableCollection<FlightModel> _listOfFlights;
+        private ObservableCollection<AirportModel> _listOfAirport;
+        private FlightModel _selectedFlight;
+        private FlightModel _editableFlight;
         private string _departureDateLabel = "Дата...";
         private string _departureCityLabel = "Город...";
 
@@ -35,7 +35,7 @@ namespace NewAirport.VVM.Editor.Schedule
             }
         }
 
-        public ObservableCollection<Flight> ListOfFlights
+        public ObservableCollection<FlightModel> ListOfFlights
         {
             get => _listOfFlights;
             private set
@@ -45,7 +45,7 @@ namespace NewAirport.VVM.Editor.Schedule
             }
         }
         
-        public ObservableCollection<Airport> ListOfAirports
+        public ObservableCollection<AirportModel> ListOfAirports
         {
             get => _listOfAirport;
             private set
@@ -55,18 +55,18 @@ namespace NewAirport.VVM.Editor.Schedule
             }
         }
         
-        public Flight SelectedFlight
+        public FlightModel SelectedFlight
         {
             get => _selectedFlight;
             set
             {
                 _selectedFlight = value;
-                EditableFlight = value.Clone() as Flight;
+                EditableFlight = value;
                 OnPropertyChanged();
             }
         }
 
-        public Flight EditableFlight
+        public FlightModel EditableFlight
         {
             get => _editableFlight;
             private set
@@ -80,15 +80,15 @@ namespace NewAirport.VVM.Editor.Schedule
 
         public ScheduleEditorVM()
         {
-            ListOfFlights = new ObservableCollection<Flight>(DB.Flights.GetList());
-            ListOfAirports = new ObservableCollection<Airport>(DB.Airports.GetList());
+            ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
+            ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
             DB.OnUpdateDbEvent += GetItems;
         }
 
         private void GetItems(object sender, EventArgs e)
         {
-            ListOfFlights = new ObservableCollection<Flight>(DB.Flights.GetList());
-            ListOfAirports = new ObservableCollection<Airport>(DB.Airports.GetList());
+            ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
+            ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
         }
         
         private RelayCommand _checkAndSave;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using BLL.Interfaces;
+using BLL.Models;
 using BLL.Repositories;
 using DAL.Context;
 using DAL.Entities;
@@ -11,26 +12,26 @@ namespace BLL.UnitOfWork
     {
         private BaseContext db;
 
-        private AirplaneRepos airplaneRepos;
-        private AirportRepos airportRepos;
-        private ModelRepos modelRepos;
-        private FlightRepos flightRepos;
+        private AirplaneService airplaneService;
+        private AirportService airportService;
+        private TemplateService templateService;
+        private FlightService flightService;
         
         public UnitOfWork(BaseContext db)
         {
             this.db = db;
         }
 
-        public IRepository<Airplane> Airplanes => airplaneRepos ??= new AirplaneRepos(db);
-        public IAirportRepository Airports => airportRepos ??= new AirportRepos(db);
-        public IRepository<RecurringFlightsTemplate> Models => modelRepos ??= new ModelRepos(db, this);
-        public IFlightRepository Flights => flightRepos ??= new FlightRepos(db, this);
+        public IService<AirplaneModel> Airplanes => airplaneService ??= new AirplaneService(db, this);
+        public IAirportRepository Airports => airportService ??= new AirportService(db, this);
+        public IService<RecurringFlightsTemplateModel> Templates => templateService ??= new TemplateService(db, this);
+        public IFlightRepository Flights => flightService ??= new FlightService(db, this);
 
         public event EventHandler OnUpdateDbEvent;
         public void Save()
         {
             db.SaveChanges();
-            OnUpdateDbEvent.Invoke(this, new EventArgs());
+            OnUpdateDbEvent?.Invoke(this, new EventArgs());
         }
         public void Dispose()
         {

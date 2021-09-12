@@ -208,28 +208,21 @@ namespace DAL.Context
             {
                 new RecurringFlightsTemplate()
                 {
-                    IsDeparture = false,
-                    Airport = airportList[9],
+                    FirstAirport = airportList[9],
+                    SecondAirport = airportList[10],
                     Airplane = airplaneList[0],
-                    DayOfWeek = 1,
-                    DepartureTime = new TimeSpan(8, 0, 0),
-                    ArrivalTime = new TimeSpan(10, 15, 0),
+                   
+                    ArrivalDayOfWeek=2, 
+                    DepartureTimeFromFirstCity =  new TimeSpan(8, 0, 0),
+                    ArrivalTimeFromFirstCity = new TimeSpan(10, 15, 0),
+                   
+                    DepartureDayOfWeek = 4,
+                    DepartureTimeToSecondCity = new TimeSpan(20, 0, 0),
+                    ArrivalTimeToSecondCity = new TimeSpan(1, 30, 0),
                     StartDateOfCreatingFlights = DateTime.Today,
                     EndDateOfCreatingFlights = DateTime.Today.AddDays(14)
                 },
-                new RecurringFlightsTemplate()
-                {
-                    IsDeparture = true,
-                    Airport = airportList[5],
-                    Airplane = airplaneList[0],
-                    DayOfWeek = 4,
-                    DepartureTime = new TimeSpan(20, 0, 0),
-                    ArrivalTime = new TimeSpan(1, 30, 0),
-                    StartDateOfCreatingFlights = DateTime.Today,
-                    EndDateOfCreatingFlights = DateTime.Today.AddDays(14)
-                }
             };
-
 
             airportList.ForEach(e => context.Airports.Add(e));
             airplaneList.ForEach(e => context.Airplanes.Add(e));

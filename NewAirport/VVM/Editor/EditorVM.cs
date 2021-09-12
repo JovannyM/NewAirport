@@ -30,7 +30,7 @@ namespace NewAirport.VVM.Editer
         public RelayCommand CreateFlighRelayCommand =>
             _createFlightCommand ??= new RelayCommand(obj =>
             {
-                foreach (var model in DB.Models.GetList())
+                foreach (var model in DB.Templates.GetList())
                 {
                     DB.Flights.CreateFlightsByModel(model);
                 }
