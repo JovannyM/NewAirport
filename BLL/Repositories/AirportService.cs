@@ -26,5 +26,14 @@ namespace BLL.Repositories
         {
             get => this.GetItem(Int32.Parse(ConfigurationManager.AppSettings["Airport"]));
         }
+
+        public int TimeBetweenFlights
+        {
+            get
+            {
+                return Int32.Parse(ConfigurationManager.AppSettings["DefaultTimeBetweenFlights"]) /
+                       MainAirport.CountOfRunways;
+            }
+        }
     }
 }

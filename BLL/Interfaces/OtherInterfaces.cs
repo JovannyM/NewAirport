@@ -6,6 +6,7 @@ namespace BLL.Interfaces
     public interface IAirportRepository : IService<AirportModel>
     {
         public AirportModel MainAirport { get; }
+        public int TimeBetweenFlights { get; }
     }
 
     public interface IFlightRepository : IService<FlightModel>
