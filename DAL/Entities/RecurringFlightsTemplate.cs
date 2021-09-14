@@ -9,13 +9,16 @@ namespace DAL.Entities
         public virtual Airport SecondAirport { get; set; }
 
         /// <summary>
-        /// день недели считается по дате вылета
+        /// день недели по дате прилёта
         /// </summary>
-        public int ArrivalDayOfWeek { get; set; }
+        public int ArrivalFromFirstCityDayOfWeek { get; set; }
         public TimeSpan DepartureTimeFromFirstCity { get; set; }
         public TimeSpan ArrivalTimeFromFirstCity { get; set; }
 
-        public int DepartureDayOfWeek { get; set; }
+        /// <summary>
+        /// день недели по дате отлёта
+        /// </summary>
+        public int DepartureToSecondCityDayOfWeek { get; set; }
         public TimeSpan DepartureTimeToSecondCity { get; set; }
         public TimeSpan ArrivalTimeToSecondCity { get; set; }
 

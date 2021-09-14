@@ -12,8 +12,8 @@ namespace BLL.Models
         [Reactive] public AirplaneModel Airplane { get; set; }
         [Reactive] public AirportModel Airport { get; set; }
 
-        [Reactive] public DateTime DepartureTime { get; set; }
-        [Reactive] public DateTime ArrivalTime { get; set; }
+        [Reactive] public DateTime DepartureDate { get; set; }
+        [Reactive] public DateTime ArrivalDate { get; set; }
         [Reactive] public bool IsDeparture { get; set; }
         [Reactive] public bool Edited { get; set; }
     }

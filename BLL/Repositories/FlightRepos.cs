@@ -44,8 +44,8 @@ namespace BLL.Repositories
     //             {
     //                 Airplane = model.Airplane,
     //                 Airport = model.Airport,
-    //                 DepartureTime = date + model.DepartureTime,
-    //                 ArrivalTime = model.DepartureTime > model.ArrivalTime ? date.AddDays(1) + model.ArrivalTime : date + model.ArrivalTime,
+    //                 DepartureDate = date + model.DepartureDate,
+    //                 ArrivalDate = model.DepartureDate > model.ArrivalDate ? date.AddDays(1) + model.ArrivalDate : date + model.ArrivalDate,
     //                 Edited = false,
     //                 IsDeparture = model.IsDeparture,
     //                 RecurringFlightsTemplate = model,
@@ -80,12 +80,12 @@ namespace BLL.Repositories
     //
     //     public (bool isCreate, string message) Check(Flight model)
     //     {
-    //         var startTimeDeparture = model.ArrivalTime.AddMinutes(-10);
-    //         var endTimeDeparture = model.ArrivalTime.AddMinutes(10);
+    //         var startTimeDeparture = model.ArrivalDate.AddMinutes(-10);
+    //         var endTimeDeparture = model.ArrivalDate.AddMinutes(10);
     //         var conflictsFlights = DB.Flights.Where(f => f.Id != model.Id &&
-    //                                                      f.ArrivalTime >= startTimeDeparture &&
-    //                                                      f.ArrivalTime <= endTimeDeparture).FirstOrDefault();
-    //         if (conflictsFlights != null) return (false, $"В выбранное время есть конфликтующий рейс №{conflictsFlights.Id} в {conflictsFlights.ArrivalTime.ToString()}");
+    //                                                      f.ArrivalDate >= startTimeDeparture &&
+    //                                                      f.ArrivalDate <= endTimeDeparture).FirstOrDefault();
+    //         if (conflictsFlights != null) return (false, $"В выбранное время есть конфликтующий рейс №{conflictsFlights.Id} в {conflictsFlights.ArrivalDate.ToString()}");
     //         return (true, "");
     //     }
     // }

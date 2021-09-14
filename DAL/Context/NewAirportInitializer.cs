@@ -212,11 +212,11 @@ namespace DAL.Context
                     SecondAirport = airportList[10],
                     Airplane = airplaneList[0],
                    
-                    ArrivalDayOfWeek=2, 
+                    ArrivalFromFirstCityDayOfWeek=2, 
                     DepartureTimeFromFirstCity =  new TimeSpan(8, 0, 0),
                     ArrivalTimeFromFirstCity = new TimeSpan(10, 15, 0),
                    
-                    DepartureDayOfWeek = 4,
+                    DepartureToSecondCityDayOfWeek = 4,
                     DepartureTimeToSecondCity = new TimeSpan(20, 0, 0),
                     ArrivalTimeToSecondCity = new TimeSpan(1, 30, 0),
                     StartDateOfCreatingFlights = DateTime.Today,

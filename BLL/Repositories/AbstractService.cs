@@ -49,7 +49,7 @@ namespace BLL.Repositories
         public List<M> GetList()
         {
             var listD = DbSet.ToList();
-            var listModels = toModel.Map<List<M>>(listD);
+            var listModels = toModel.Map<List<D>,List<M>>(listD);
             return listModels;
         }
 

@@ -11,8 +11,8 @@ namespace DAL.Entities
         public virtual Airplane Airplane { get; set; }
         public virtual Airport Airport { get; set; }
 
-        public DateTime DepartureTime { get; set; }
-        public DateTime ArrivalTime { get; set; }
+        public DateTime DepartureDate { get; set; }
+        public DateTime ArrivalDate { get; set; }
 
         public bool IsDeparture { get; set; }
         public bool Edited { get; set; }
