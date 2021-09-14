@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entities
 {
@@ -6,6 +7,8 @@ namespace DAL.Entities
     {
         public virtual RecurringFlightsTemplate RecurringFlightsTemplate { get; set; }
 
+        public  int? PairFlight_Id { get; set; }
+        [ForeignKey("PairFlight_Id")]
         public virtual Flight PairFlight { get; set; }
 
         public virtual Airplane Airplane { get; set; }

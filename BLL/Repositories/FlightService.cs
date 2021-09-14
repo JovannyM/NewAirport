@@ -18,10 +18,8 @@ namespace BLL.Repositories
             this.toDal = new Mapper(toDalConfig);
             var toModelConfig = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<Flight, FlightModel>().ForMember("RecurringFlightsTemplate", opt =>
-                    {
-                        opt.Ignore();
-                    });
+                    cfg.CreateMap<Flight, FlightModel>()
+                        .ForMember("RecurringFlightsTemplate", opt => { opt.Ignore(); });
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }
@@ -53,8 +51,8 @@ namespace BLL.Repositories
 
             firstFlightArrivalDate = PossibleFirstFlightArrivalDate.Date + template.ArrivalTimeFromFirstCity;
 
-            while ((int)firstFlightArrivalDate.DayOfWeek != template.ArrivalFromFirstCityDayOfWeek &&
-                   firstFlightArrivalDate > PossibleFirstFlightArrivalDate)
+            while ((int)firstFlightArrivalDate.DayOfWeek != template.ArrivalFromFirstCityDayOfWeek ||
+                   firstFlightArrivalDate < PossibleFirstFlightArrivalDate)
             {
                 firstFlightArrivalDate = firstFlightArrivalDate.AddDays(1);
             }
@@ -96,10 +94,12 @@ namespace BLL.Repositories
                     IsDeparture = true,
                     Edited = false,
                     RecurringFlightsTemplate = template,
-                    //PairFlight = arrivalFlightFromFirstCity,
                 };
-                //arrivalFlightFromFirstCity.PairFlight = departureFlightToSecondCity;
                 DbSet.AddRange(new[] { arrivalFlightFromFirstCity, departureFlightToSecondCity });
+                UOW.Save();
+                arrivalFlightFromFirstCity.PairFlight_Id = departureFlightToSecondCity.Id;
+                departureFlightToSecondCity.PairFlight_Id = arrivalFlightFromFirstCity.Id;
+                UOW.Save();
 
                 firstFlightDepartureDate = firstFlightDepartureDate.AddDays(7);
                 firstFlightArrivalDate = firstFlightArrivalDate.AddDays(7);
