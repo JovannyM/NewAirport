@@ -14,12 +14,19 @@ namespace BLL.Repositories
         public FlightService(BaseContext db, IUnitOfWork uow) : base(db, db.Flights, uow)
         {
             var toDalConfig = new MapperConfiguration(cfg =>
-                cfg.CreateMap<FlightModel, Flight>());
+            {
+                cfg.CreateMap<FlightModel, Flight>()
+                    .ForMember("RecurringFlightsTemplate",
+                        opt => { opt.Ignore(); });
+                cfg.CreateMap<AirplaneModel, Airplane>();
+                cfg.CreateMap<AirportModel, Airport>();
+            });
             this.toDal = new Mapper(toDalConfig);
             var toModelConfig = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<Flight, FlightModel>()
-                        .ForMember("RecurringFlightsTemplate", opt => { opt.Ignore(); });
+                        .ForMember("RecurringFlightsTemplate",
+                            opt => { opt.Ignore(); });
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }

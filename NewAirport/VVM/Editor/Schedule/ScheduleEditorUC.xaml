@@ -73,7 +73,8 @@
                 Grid.Column="1"
                 ItemsSource="{Binding ListOfAirports}"
                 DisplayMemberPath="Name"
-                SelectedItem="{Binding SelectedFlight.Airport}" />
+                SelectedValuePath="Id"
+                SelectedValue="{Binding SelectedFlight.Airport.Id}" />
 
 
             <TextBlock
@@ -92,13 +93,13 @@
                 <DatePicker
                     Margin="10 0 0 0"
                     Width="250"
-                    SelectedDate="{Binding EditableFlight.DepartureTime}"
+                    SelectedDate="{Binding SelectedFlight.DepartureDate}"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                     materialDesign:HintAssist.Hint="Дата" />
                 <materialDesign:TimePicker
                     Margin="50 0 0 0"
                     Width="250"
-                    SelectedTime="{Binding EditableFlight.DepartureTime}"
+                    SelectedTime="{Binding SelectedFlight.DepartureDate}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время" />
             </StackPanel>
