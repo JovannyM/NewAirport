@@ -17,7 +17,12 @@ namespace BLL.Repositories
             {
                 cfg.CreateMap<FlightModel, Flight>()
                     .ForMember("RecurringFlightsTemplate",
-                        opt => { opt.Ignore(); });
+                        opt => { opt.Ignore(); }
+                    )
+                    .ForMember("PairFlight", opt => opt.Ignore())
+                    .ForMember("Airplane", opt => opt.Ignore())
+                    .ForMember("Airport", opt => opt.Ignore());
+
                 cfg.CreateMap<AirplaneModel, Airplane>();
                 cfg.CreateMap<AirportModel, Airport>();
             });

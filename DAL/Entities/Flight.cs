@@ -11,7 +11,12 @@ namespace DAL.Entities
         [ForeignKey("PairFlight_Id")]
         public virtual Flight PairFlight { get; set; }
 
+        public int? Airplane_Id { get; set; }
+        [ForeignKey("Airplane_Id")]
         public virtual Airplane Airplane { get; set; }
+        
+        public int? Airport_Id { get; set; }
+        [ForeignKey("Airport_Id")]
         public virtual Airport Airport { get; set; }
 
         public DateTime DepartureDate { get; set; }

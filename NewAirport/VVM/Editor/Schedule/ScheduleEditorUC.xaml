@@ -74,7 +74,7 @@
                 ItemsSource="{Binding ListOfAirports}"
                 DisplayMemberPath="Name"
                 SelectedValuePath="Id"
-                SelectedValue="{Binding SelectedFlight.Airport.Id}" />
+                SelectedValue="{Binding SelectedFlight.Airport_Id}" />
 
 
             <TextBlock

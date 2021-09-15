@@ -7,9 +7,12 @@ namespace BLL.Models
     {
         [Reactive] public RecurringFlightsTemplateModel RecurringFlightsTemplate { get; set; }
 
+        public  int? PairFlight_Id { get; set; }
         [Reactive] public FlightModel PairFlight { get; set; }
 
+        public int? Airplane_Id { get; set; }
         [Reactive] public AirplaneModel Airplane { get; set; }
+        public int? Airport_Id { get; set; }
         [Reactive] public AirportModel Airport { get; set; }
 
         [Reactive] public DateTime DepartureDate { get; set; }

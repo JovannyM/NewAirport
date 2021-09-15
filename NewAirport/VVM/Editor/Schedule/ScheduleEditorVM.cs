@@ -61,8 +61,12 @@ namespace NewAirport.VVM.Editor.Schedule
             set
             {
                 _selectedFlight = value;
-                DepartureDateLabel = value.IsDeparture ? "Время отправления" : "Время прибытия";
-                DepartureCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";
+                if (value != null)
+                {
+                    DepartureDateLabel = value.IsDeparture ? "Время отправления" : "Время прибытия";
+                    DepartureCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";  
+                }
+
                 OnPropertyChanged();
             }
         }
