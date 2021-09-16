@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="1000"
+             d:DesignHeight="400" d:DesignWidth="1200"
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:scheduleEditer="clr-namespace:NewAirport.VVM.Editor.Schedule"
@@ -24,25 +24,30 @@
         Width="auto" Height="auto">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            
+            <!--#region Edit Flight-->
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="10 0 0 0"
                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                Text="Выберите рейс"
+                Text="Рейс №"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Right"/>
+                HorizontalAlignment="Right" />
             <ComboBox
                 Grid.Row="0"
                 Grid.Column="1"
@@ -54,7 +59,7 @@
                 IsEditable="True"
                 ItemsSource="{Binding ListOfFlights}"
                 SelectedItem="{Binding SelectedFlight}"
-                DisplayMemberPath="Id"/>
+                DisplayMemberPath="Id" />
 
 
             <TextBlock
@@ -82,36 +87,81 @@
                 Grid.Column="0"
                 Margin="10 0 0 0"
                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                Text="{Binding DepartureDateLabel}" 
+                Text="Дата и время"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Right"/>
-            <StackPanel 
-                Grid.Row="2" 
-                Grid.Column="1" 
-                Orientation="Horizontal" 
+                HorizontalAlignment="Right" />
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Horizontal"
                 HorizontalAlignment="Left">
                 <DatePicker
                     Margin="10 0 0 0"
-                    Width="250"
+                    Width="150"
                     SelectedDate="{Binding SelectedFlight.DepartureDate}"
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                    materialDesign:HintAssist.Hint="Дата" />
+                    materialDesign:HintAssist.Hint="Дата отправления" 
+                    SelectedDateFormat="Short" Text="1-1-0001"/>
                 <materialDesign:TimePicker
-                    Margin="50 0 0 0"
-                    Width="250"
+                    Margin="20 0 0 0"
+                    Width="150"
                     SelectedTime="{Binding SelectedFlight.DepartureDate}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
-                    materialDesign:HintAssist.Hint="Время" />
+                    materialDesign:HintAssist.Hint="Время отправления" />
+                <TextBlock
+                    Margin="30 0 30 0"
+                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                    Text="->"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" />
+                <DatePicker
+                    Width="150"
+                    SelectedDate="{Binding SelectedFlight.ArrivalDate}"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                    materialDesign:HintAssist.Hint="Дата прибытия" />
+                <materialDesign:TimePicker
+                    Margin="20 0 0 0"
+                    Width="150"
+                    SelectedTime="{Binding SelectedFlight.ArrivalDate}"
+                    Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
+                    materialDesign:HintAssist.Hint="Время прибытия" />
             </StackPanel>
 
-            
             <Button
-                Grid.Row="3"
-                Grid.Column="1"
-                HorizontalAlignment="Right"
-                Margin="0 0 20 0"
-                Command="{Binding CheckAndSave}" 
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="0 0 15 0"
+                Command="{Binding CheckAndSave}"
                 Content="Сохранить изменения" />
+            <!--#endregion-->
+
+            <!--#region Create Flight-->
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="0"
+                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                Text="Новый рейс"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right" />
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Left">
+                <RadioButton
+                    Margin="15 0 0 0"
+                    IsChecked="True"
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    Tag="True"
+                    Content="Прибытие" FontWeight="Normal" FontSize="16" />
+                <RadioButton
+                    Margin="15 0 0 0"
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    Tag="True"
+                    Content="Отправление" FontWeight="Normal" FontSize="16" />
+            </StackPanel>
+            <!--#endregion-->
+
         </Grid>
     </materialDesign:Card>
 </UserControl>

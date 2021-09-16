@@ -6,25 +6,14 @@ using NewAirport.Utilites;
 
 namespace NewAirport.VVM.Editor.Schedule
 {
-    public class ScheduleEditorVM : BaseVM
+    public partial class ScheduleEditorVM : BaseVM
     {
         private ObservableCollection<FlightModel> _listOfFlights;
         private ObservableCollection<AirportModel> _listOfAirport;
         private FlightModel _selectedFlight;
         private FlightModel _editableFlight;
-        private string _departureDateLabel = "Дата...";
         private string _departureCityLabel = "Город...";
 
-        public string DepartureDateLabel
-        {
-            get => _departureDateLabel;
-            private set
-            {
-                _departureDateLabel = value;
-                OnPropertyChanged();
-            }
-        }
-        
         public string DepartureCityLabel
         {
             get => _departureCityLabel;
@@ -63,7 +52,6 @@ namespace NewAirport.VVM.Editor.Schedule
                 _selectedFlight = value;
                 if (value != null)
                 {
-                    DepartureDateLabel = value.IsDeparture ? "Время отправления" : "Время прибытия";
                     DepartureCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";  
                 }
 
@@ -89,8 +77,6 @@ namespace NewAirport.VVM.Editor.Schedule
             _checkAndSave ??= new RelayCommand(obj =>
             {
                 DB.Flights.Update(SelectedFlight);
-                // var result = DB.Flights.CheckAndUpdate(EditableFlight);
-                // MessageBox.Show(result.message);
             });
       
     }

@@ -160,6 +160,7 @@
       <DependentUpon>ModelEditorUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\Editor\Model\ModelEditorVM.cs" />
+    <Compile Include="VVM\Editor\Schedule\ScheduleCreateVM.cs" />
     <Compile Include="VVM\Editor\Schedule\ScheduleEditorUC.xaml.cs">
       <DependentUpon>ScheduleEditorUC.xaml</DependentUpon>
     </Compile>
