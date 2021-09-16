@@ -33,7 +33,5 @@ namespace NewAirport.VVM.Schedule
         {
             Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
         }
-
- 
     }
 }
