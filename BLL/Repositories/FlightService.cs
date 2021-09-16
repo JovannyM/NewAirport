@@ -22,7 +22,6 @@ namespace BLL.Repositories
                     .ForMember("PairFlight", opt => opt.Ignore())
                     .ForMember("Airplane", opt => opt.Ignore())
                     .ForMember("Airport", opt => opt.Ignore());
-
                 cfg.CreateMap<AirplaneModel, Airplane>();
                 cfg.CreateMap<AirportModel, Airport>();
             });
@@ -31,7 +30,22 @@ namespace BLL.Repositories
                 {
                     cfg.CreateMap<Flight, FlightModel>()
                         .ForMember("RecurringFlightsTemplate",
-                            opt => { opt.Ignore(); });
+                            opt => { opt.Ignore(); })
+                        .ForMember("DepartureAirport",
+                            opt =>
+                            {
+                                opt.MapFrom((d, m) =>
+                                {
+                                    return d.IsDeparture ? UOW.Airports.MainAirport : m.Airport;
+                                });
+                            })
+                        .ForMember("ArrivalAirport", opt =>
+                        {
+                            opt.MapFrom((d, m) =>
+                            {
+                                return d.IsDeparture ? m.Airport : UOW.Airports.MainAirport;
+                            });
+                        });
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }
