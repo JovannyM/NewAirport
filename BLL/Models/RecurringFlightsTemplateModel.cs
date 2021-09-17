@@ -5,9 +5,12 @@ namespace BLL.Models
 {
     public class RecurringFlightsTemplateModel : BaseModel
     {
-        [Reactive] public AirplaneModel Airplane { get; set; }
-        [Reactive] public AirportModel FirstAirport { get; set; }
-        [Reactive] public virtual AirportModel SecondAirport { get; set; }
+        [Reactive] public int? Airplane_Id { get; set; }
+        public AirplaneModel Airplane { get; set; }
+        [Reactive] public int? FirstAirport_Id { get; set; }
+        public AirportModel FirstAirport { get; set; }
+        [Reactive] public int? SecondAirport_Id { get; set; }
+        public virtual AirportModel SecondAirport { get; set; }
 
         /// <summary>
         /// день недели по дате прилёта

@@ -12,11 +12,13 @@ namespace BLL.Repositories
         public TemplateService(BaseContext db, IUnitOfWork uow) : base(db, db.RecurringFlightsTemplates, uow)
         {
             var toDalConfig = new MapperConfiguration(cfg =>
-                cfg.CreateMap<RecurringFlightsTemplateModel, RecurringFlightsTemplate>());
-            // .ForMember("FirstAirport", opt =>
-            //     opt.MapFrom(s => new AirportModel()))
-            // .ForMember("SecondAirport", opt =>
-            //     opt.MapFrom(s => new AirportModel())));
+            {
+                cfg.CreateMap<RecurringFlightsTemplateModel, RecurringFlightsTemplate>()
+                    .ForMember("Airplane", opt => opt.Ignore())
+                    .ForMember("FirstAirport", opt => opt.Ignore())
+                    .ForMember("SecondAirport", opt => opt.Ignore());
+            });
+
             this.toDal = new Mapper(toDalConfig);
             var toModelConfig = new MapperConfiguration(cfg =>
                 {

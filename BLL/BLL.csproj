@@ -98,6 +98,7 @@
         <Compile Include="Models\AirplaneModel.cs" />
         <Compile Include="Models\AirportModel.cs" />
         <Compile Include="Models\BaseModel.cs" />
+        <Compile Include="Models\DayOfWeekModel.cs" />
         <Compile Include="Models\FlightModel.cs" />
         <Compile Include="Models\RecurringFlightsTemplateModel.cs" />
         <Compile Include="Properties\Annotations.cs" />

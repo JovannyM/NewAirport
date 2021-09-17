@@ -65,9 +65,10 @@
                         materialDesign:HintAssist.Hint="Search"
                         materialDesign:HintAssist.HintOpacity=".26"
                         IsEditable="True"
-                        ItemsSource="{Binding ListOfFlights}"
-                        SelectedItem="{Binding }"
-                        DisplayMemberPath="Id" />
+                        ItemsSource="{Binding ListOfAirplane}"
+                        SelectedValue="{Binding CurrentTemplate.Airplane_Id}"
+                        SelectedValuePath="Id"
+                        DisplayMemberPath="Name" />
                 </StackPanel>
                 <Button
                     Grid.Column="4"
@@ -121,9 +122,10 @@
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
-                    ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
-                    DisplayMemberPath="Id" />
+                    ItemsSource="{Binding ListOfAirports}"
+                    SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentTemplate.FirstAirport_Id }"
+                    DisplayMemberPath="Name" />
 
                 <!-- День недели -->
                 <TextBlock
@@ -141,9 +143,10 @@
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
-                    ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
-                    DisplayMemberPath="Id" />
+                    ItemsSource="{Binding DaysOfWeek}"
+                    SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentTemplate.ArrivalFromFirstCityDayOfWeek}"
+                    DisplayMemberPath="Name" />
 
                 <!-- Время -->
                 <TextBlock
@@ -160,7 +163,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding SelectedFlight.DepartureDate}"
+                    SelectedTime="{Binding CurrentTemplate.DepartureTimeFromFirstCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время отправления" />
 
@@ -178,7 +181,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding SelectedFlight.ArrivalDate}"
+                    SelectedTime="{Binding CurrentTemplate.ArrivalTimeFromFirstCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время прибытия" />
             </Grid>
@@ -228,9 +231,10 @@
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
-                    ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
-                    DisplayMemberPath="Id" />
+                    ItemsSource="{Binding ListOfAirports}"
+                    SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentTemplate.SecondAirport_Id }"
+                    DisplayMemberPath="Name" />
 
                 <!-- День недели -->
                 <TextBlock
@@ -248,9 +252,10 @@
                     materialDesign:HintAssist.Hint="Search"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
-                    ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
-                    DisplayMemberPath="Id" />
+                    ItemsSource="{Binding DaysOfWeek}"
+                    SelectedValuePath="Id"
+                    SelectedValue="{Binding CurrentTemplate.DepartureToSecondCityDayOfWeek}"
+                    DisplayMemberPath="Name" />
 
                 <!-- Время -->
                 <TextBlock
@@ -267,7 +272,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding SelectedFlight.DepartureDate}"
+                    SelectedTime="{Binding CurrentTemplate.DepartureTimeToSecondCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время отправления" />
 
@@ -285,7 +290,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding SelectedFlight.ArrivalDate}"
+                    SelectedTime="{Binding CurrentTemplate.ArrivalTimeToSecondCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время прибытия" />
             </Grid>
