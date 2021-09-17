@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using BLL.Models;
+using DynamicData.Binding;
 using NewAirport.Utilites;
 
 namespace NewAirport.VVM.Editor.Schedule
@@ -12,14 +14,16 @@ namespace NewAirport.VVM.Editor.Schedule
         private ObservableCollection<AirportModel> _listOfAirport;
         private FlightModel _selectedFlight;
         private FlightModel _editableFlight;
-        private string _departureCityLabel = "Город...";
+        private string _forEditCityLabel = "Город...";
+        
+        
 
-        public string DepartureCityLabel
+        public string ForEditCityLabel
         {
-            get => _departureCityLabel;
+            get => _forEditCityLabel;
             private set
             {
-                _departureCityLabel = value;
+                _forEditCityLabel = value;
                 OnPropertyChanged();
             }
         }
@@ -52,7 +56,7 @@ namespace NewAirport.VVM.Editor.Schedule
                 _selectedFlight = value;
                 if (value != null)
                 {
-                    DepartureCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";  
+                    ForEditCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";  
                 }
 
                 OnPropertyChanged();
@@ -61,17 +65,27 @@ namespace NewAirport.VVM.Editor.Schedule
    
         public ScheduleEditorVM()
         {
-            ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
-            ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
-            DB.OnUpdateDbEvent += GetItems;
+            CreatingFlight = new FlightModel();
+            LoadFromDB();
+            DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();
         }
 
-        private void GetItems(object sender, EventArgs e)
+        private void LoadFromDB()
         {
             ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
             ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
+            ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList());
+            CreatingFlight.Airplane_Id = ListOfAirplane.FirstOrDefault()?.Id;
+            CreatingFlight.Airport_Id = ListOfAirports.FirstOrDefault()?.Id;
+            CreatingFlight.DepartureDate = DateTime.Now;
+            CreatingFlight.ArrivalDate = DateTime.Now.AddDays(1);
         }
-        
+
+        private RelayCommand _createFlight;
+
+        public RelayCommand CreateFlight =>
+            _createFlight ??= new RelayCommand(obj => DB.Flights.Create(CreatingFlight));
+
         private RelayCommand _checkAndSave;
         public RelayCommand CheckAndSave =>
             _checkAndSave ??= new RelayCommand(obj =>
