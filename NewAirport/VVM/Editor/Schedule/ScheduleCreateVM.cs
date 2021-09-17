@@ -5,7 +5,7 @@ namespace NewAirport.VVM.Editor.Schedule
 {
     public partial class ScheduleEditorVM
     {
-        private string _forCreateCityLabel = "Город прибытия";
+        private string _forCreateCityLabel = "Город отправления";
         private bool _isDeparture = true;
         private FlightModel _creatingFlight;
         private ObservableCollection<AirplaneModel> _listOfAirplane;

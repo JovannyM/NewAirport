@@ -23,7 +23,7 @@ namespace NewAirport.VVM.Editer
 
         public EditerVM()
         {
-            CurrentPage = null;
+            CurrentPage = AllUserControl.GetUC(ALLUC.ScheduleEditerUC);
         }
 
         private RelayCommand _createFlightCommand;
