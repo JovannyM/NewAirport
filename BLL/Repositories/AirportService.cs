@@ -38,10 +38,17 @@ namespace BLL.Repositories
             }
         }
 
+        public List<AirportModel> GetListWithoutMain()
+        {
+            var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();
+            var listModels = toModel.Map<List<Airport>,List<AirportModel>>(listD);
+            return listModels;
+        }
+        
         // public override List<AirportModel> GetList()
         // {
-        //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id);
-        //     var listModels = toModel.Map<List<>,List<M>>(listD);
+        //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();
+        //     var listModels = toModel.Map<List<Airport>,List<AirportModel>>(listD);
         //     return listModels;
         // }
     }

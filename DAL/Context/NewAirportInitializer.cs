@@ -211,11 +211,11 @@ namespace DAL.Context
                     FirstAirport = airportList[9],
                     SecondAirport = airportList[10],
                     Airplane = airplaneList[0],
-                   
-                    ArrivalFromFirstCityDayOfWeek=2, 
-                    DepartureTimeFromFirstCity =  new TimeSpan(8, 0, 0),
+
+                    ArrivalFromFirstCityDayOfWeek = 2,
+                    DepartureTimeFromFirstCity = new TimeSpan(8, 0, 0),
                     ArrivalTimeFromFirstCity = new TimeSpan(10, 15, 0),
-                   
+
                     DepartureToSecondCityDayOfWeek = 4,
                     DepartureTimeToSecondCity = new TimeSpan(20, 0, 0),
                     ArrivalTimeToSecondCity = new TimeSpan(1, 30, 0),
@@ -229,11 +229,6 @@ namespace DAL.Context
             modelList.ForEach(e => context.RecurringFlightsTemplates.Add(e));
 
             context.SaveChanges();
-
-            var currentAirport = Queryable.FirstOrDefault(context.Airplanes).Id;
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["Airport"].Value = currentAirport.ToString();
-            config.Save();
         }
     }
 }

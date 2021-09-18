@@ -3,7 +3,7 @@ using NewAirport.Utilites;
 
 namespace NewAirport.VVM.MenuAndContent
 {
-    public class MenuAndContentVM : BaseVM
+    public class   MenuAndContentVM : BaseVM
     {
         private UserControl _currentPage;
         public UserControl CurrentPage

@@ -59,7 +59,7 @@
             ItemsSource="{Binding ListOfAirports}"
             DisplayMemberPath="Name"
             SelectedValuePath="Id"
-            SelectedValue="{Binding SelectedFlight.Airport_Id}"
+            SelectedValue="{Binding SelectedAirportId}"
             Background="#50FFFFFF"
             BorderBrush="#89FFFFFF" />
     </Grid>

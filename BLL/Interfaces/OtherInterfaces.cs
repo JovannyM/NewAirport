@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿using System.Collections.Generic;
+using BLL.Models;
 using DAL.Entities;
 
 namespace BLL.Interfaces
@@ -7,6 +8,7 @@ namespace BLL.Interfaces
     {
         public AirportModel MainAirport { get; }
         public int TimeBetweenFlights { get; }
+        public List<AirportModel> GetListWithoutMain();
     }
 
     public interface IFlightRepository : IService<FlightModel>

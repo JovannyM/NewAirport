@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Windows.Controls;
 using NewAirport.Utilites;
 using NewAirport.VVM.Schedule;
@@ -20,7 +21,11 @@ namespace NewAirport.VVM
         
         public MainWindowVM()
         {
-            CurrentPage = AllUserControl.GetUC(ALLUC.SelectCurrentCityUC);
+            int currentCityId = Int32.Parse(ConfigurationManager.AppSettings["Airport"]);
+            if (currentCityId == 0)
+                CurrentPage = AllUserControl.GetUC(ALLUC.SelectCurrentCityUC);
+            else
+                CurrentPage = AllUserControl.GetUC(ALLUC.MenuAndContentUC);
         }
         
         private RelayCommand _goToCurrentPage;
