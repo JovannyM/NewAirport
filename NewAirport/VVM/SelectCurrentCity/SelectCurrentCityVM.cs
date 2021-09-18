@@ -15,15 +15,7 @@ namespace NewAirport.VVM.SelectCurrentCity
         public int SelectedAirportId
         {
             get => 1;
-            set
-            {
-                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings["Airport"].Value = value.ToString();
-                config.Save();
-            }
+            set { DB.Airports.SetMainAirportId(value); }
         }
-        
-        
-        
     }
 }

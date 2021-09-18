@@ -13,6 +13,8 @@ namespace BLL.Repositories
 {
     public class AirportService : AbstractService<Airport, AirportModel>, IAirportRepository
     {
+        private int mainAirportId = 0;
+
         public AirportService(BaseContext db, IUnitOfWork uow) : base(db, db.Airports, uow)
         {
             var toDalConfig = new MapperConfiguration(cfg =>
@@ -26,25 +28,42 @@ namespace BLL.Repositories
 
         public AirportModel MainAirport
         {
-            get => this.GetItem(Int32.Parse(ConfigurationManager.AppSettings["Airport"]));
+            get
+            {
+                var ret = this.GetItem(Int32.Parse(ConfigurationManager.AppSettings["Airport"]));
+                if (ret == null) ret = this.GetItem(mainAirportId);
+                return ret;
+            }
         }
+
+        public void SetMainAirportId(int id)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["Airport"].Value = id.ToString();
+            config.Save();
+            mainAirportId = id;
+            OnSelectedAirport?.Invoke(this, new EventArgs());
+        }
+
+        public event EventHandler OnSelectedAirport;
 
         public int TimeBetweenFlights
         {
             get
             {
-                return Int32.Parse(ConfigurationManager.AppSettings["DefaultTimeBetweenFlights"]) /
-                       MainAirport.CountOfRunways;
+                var ret = Int32.Parse(ConfigurationManager.AppSettings["DefaultTimeBetweenFlights"]) /
+                          MainAirport.CountOfRunways;
+                return ret;
             }
         }
 
         public List<AirportModel> GetListWithoutMain()
         {
-            var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();
-            var listModels = toModel.Map<List<Airport>,List<AirportModel>>(listD);
+            var listD = DbSet.Where(a => a.Id != MainAirport.Id).ToList();
+            var listModels = toModel.Map<List<Airport>, List<AirportModel>>(listD);
             return listModels;
         }
-        
+
         // public override List<AirportModel> GetList()
         // {
         //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();
