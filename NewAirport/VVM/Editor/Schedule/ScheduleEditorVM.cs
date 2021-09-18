@@ -65,16 +65,18 @@ namespace NewAirport.VVM.Editor.Schedule
    
         public ScheduleEditorVM()
         {
-            CreatingFlight = new FlightModel();
+      
             LoadFromDB();
             DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();
         }
 
         private void LoadFromDB()
         {
+            CreatingFlight = new FlightModel();
             ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
             ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
             ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList());
+            CreatingFlight.IsDeparture = true;
             CreatingFlight.Airplane_Id = ListOfAirplane.FirstOrDefault()?.Id;
             CreatingFlight.Airport_Id = ListOfAirports.FirstOrDefault()?.Id;
             CreatingFlight.DepartureDate = DateTime.Now;
@@ -84,7 +86,11 @@ namespace NewAirport.VVM.Editor.Schedule
         private RelayCommand _createFlight;
 
         public RelayCommand CreateFlight =>
-            _createFlight ??= new RelayCommand(obj => DB.Flights.Create(CreatingFlight));
+            _createFlight ??= new RelayCommand(obj =>
+            {
+                var checker = DB.Flights.CreateFlight(CreatingFlight);
+                MessageBox.Show(checker.message);
+            });
 
         private RelayCommand _checkAndSave;
         public RelayCommand CheckAndSave =>

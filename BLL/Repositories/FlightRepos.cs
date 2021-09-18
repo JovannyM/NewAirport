@@ -58,7 +58,7 @@ namespace BLL.Repositories
     //
     //     public (bool isCreate, string message) CheckAndUpdate(Flight model)
     //     {
-    //         var checker = Check(model);
+    //         var checker = CheckFlights(model);
     //         if (checker.isCreate)
     //         {
     //             if (model.Id > 0) //это значит, что модель существует, и надо обновить
@@ -78,7 +78,7 @@ namespace BLL.Repositories
     //         return (false, checker.message);
     //     }
     //
-    //     public (bool isCreate, string message) Check(Flight model)
+    //     public (bool isCreate, string message) CheckFlights(Flight model)
     //     {
     //         var startTimeDeparture = model.ArrivalDate.AddMinutes(-10);
     //         var endTimeDeparture = model.ArrivalDate.AddMinutes(10);

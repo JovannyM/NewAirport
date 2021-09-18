@@ -24,21 +24,21 @@ namespace BLL.Repositories
             UOW = uow;
         }
         
-        public void Create(M item)
+        public virtual void Create(M item)
         { 
             D d = toDal.Map<D>(item);
             DbSet.Add(d);
             UOW.Save();
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             D item = DbSet.Find(id);
             if (item != null) DbSet.Remove(item);
             UOW.Save();
         }
 
-        public void Update(M model)
+        public virtual void Update(M model)
         {
             D updatedItem = DbSet.Find(model.Id);
             toDal.Map<M, D>(model, updatedItem);
@@ -46,14 +46,14 @@ namespace BLL.Repositories
             UOW.Save();
         }
 
-        public List<M> GetList()
+        public virtual List<M> GetList()
         {
             var listD = DbSet.ToList();
             var listModels = toModel.Map<List<D>,List<M>>(listD);
             return listModels;
         }
 
-        public M GetItem(int id)
+        public virtual M GetItem(int id)
         {
             var d = DbSet.Find(id);
             var model = toModel.Map<M>(d);

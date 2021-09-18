@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
+using System.Linq;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
@@ -35,5 +37,12 @@ namespace BLL.Repositories
                        MainAirport.CountOfRunways;
             }
         }
+
+        // public override List<AirportModel> GetList()
+        // {
+        //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id);
+        //     var listModels = toModel.Map<List<>,List<M>>(listD);
+        //     return listModels;
+        // }
     }
 }

@@ -9,7 +9,7 @@ using DAL.Entities;
 
 namespace BLL.Repositories
 {
-    public class FlightService : AbstractService<Flight, FlightModel>, IFlightRepository
+    public partial class FlightService : AbstractService<Flight, FlightModel>, IFlightRepository
     {
         public FlightService(BaseContext db, IUnitOfWork uow) : base(db, db.Flights, uow)
         {

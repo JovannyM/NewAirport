@@ -32,10 +32,10 @@ namespace NewAirport.VVM.Editor.Schedule
 
         public bool IsDeparture
         {
-            get => _isDeparture;
+            get => CreatingFlight.IsDeparture;
             set
             {
-                _isDeparture = value;
+               // _isDeparture = value;
                 ForCreateCityLabel = _isDeparture ? "Город прибытия" : "Город отправления";
                 CreatingFlight.IsDeparture = value;
                 OnPropertyChanged();

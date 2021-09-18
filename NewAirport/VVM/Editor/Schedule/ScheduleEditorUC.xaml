@@ -165,11 +165,11 @@
                     HorizontalAlignment="Left">
                     <RadioButton
                         Margin="15 0 0 0"
-                        IsChecked="{Binding IsDeparture}"
                         Style="{StaticResource MaterialDesignRadioButton}"
                         Tag="True"
                         Content="Прибытие" FontWeight="Normal" FontSize="16" />
                     <RadioButton
+                        IsChecked="{Binding IsDeparture}"
                         Margin="15 0 0 0"
                         Style="{StaticResource MaterialDesignRadioButton}"
                         Tag="True"

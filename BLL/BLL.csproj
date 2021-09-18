@@ -108,6 +108,7 @@
         <Compile Include="Repositories\AirportService.cs" />
         <Compile Include="Repositories\FlightRepos.cs" />
         <Compile Include="Repositories\FlightService.cs" />
+        <Compile Include="Repositories\FlightServicePartial.cs" />
         <Compile Include="Repositories\Repositories.cs" />
         <Compile Include="Repositories\TemplateService.cs" />
         <Compile Include="UnitOfWork\UnitOfWork.cs" />
