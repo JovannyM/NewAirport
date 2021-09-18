@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="680" Width="1440" MinHeight="400" MinWidth="1200"
-
         xmlns:ViewModel="clr-namespace:NewAirport.VVM"
 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -18,72 +17,8 @@
         <ViewModel:MainWindowVM />
     </Window.DataContext>
 
-    <Window.Resources>
-        <Style BasedOn="{StaticResource MaterialDesignTabRadioButton}" x:Key="MenuItem" TargetType="RadioButton">
-            <Setter Property="Foreground" Value="{StaticResource MaterialDesignDarkForeground}" />
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="Normal" />
-        </Style>
-    </Window.Resources>
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="5*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="5*" />
-        </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch" Grid.ColumnSpan="2">
-            <materialDesign:ColorZone.Background>
-                <ImageBrush ImageSource="/Images/BackGroundMain.png" Stretch="UniformToFill" />
-            </materialDesign:ColorZone.Background>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock
-                    Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                    Text="NewAirport" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8,0,0,0"
-                    Foreground="{StaticResource MaterialDesignDarkForeground}" />
-                <StackPanel
-                    Orientation="Horizontal"
-                    Margin="4"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Grid.Column="3">
-                    <RadioButton
-                        Style="{StaticResource MenuItem}"
-                        Margin="4"
-                        IsChecked="True"
-                        Visibility="Visible"
-                        Content="Расписание"
-                        Command="{Binding GoToCurrentPage}"
-                        CommandParameter="Schedule" />
-                    <RadioButton
-                        Style="{StaticResource MenuItem}"
-                        Margin="4"
-                        IsChecked="False"
-                        IsEnabled="True"
-                        Content="Редактор"
-                        Visibility="Visible"
-                        Command="{Binding GoToCurrentPage}"
-                        CommandParameter="Editor" />
-                    <RadioButton
-                        Style="{StaticResource MenuItem}"
-                        Margin="4"
-                        IsChecked="False"
-                        IsEnabled="True"
-                        Content="Библиотека"
-                        Visibility="Visible" />
-                </StackPanel>
-            </Grid>
-        </materialDesign:ColorZone>
-        <Grid Grid.Row="2" Grid.Column="2">
-            <ContentControl Content="{Binding CurrentPage}" />
-        </Grid>
-
-    </Grid>
+       <ContentControl Content="{Binding CurrentPage}" />
+   </Grid>
+    
 </Window>

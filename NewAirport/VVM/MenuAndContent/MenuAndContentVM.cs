@@ -1,11 +1,9 @@
-﻿using System.Configuration;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using NewAirport.Utilites;
-using NewAirport.VVM.Schedule;
 
-namespace NewAirport.VVM
+namespace NewAirport.VVM.MenuAndContent
 {
-    public class MainWindowVM : BaseVM
+    public class MenuAndContentVM : BaseVM
     {
         private UserControl _currentPage;
         public UserControl CurrentPage
@@ -18,9 +16,9 @@ namespace NewAirport.VVM
             }
         }
         
-        public MainWindowVM()
+        public MenuAndContentVM()
         {
-            CurrentPage = AllUserControl.GetUC(ALLUC.SelectCurrentCityUC);
+            CurrentPage = AllUserControl.GetUC(ALLUC.ScheduleUC);
         }
         
         private RelayCommand _goToCurrentPage;
