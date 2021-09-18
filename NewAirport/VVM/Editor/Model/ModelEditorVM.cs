@@ -59,6 +59,8 @@ namespace NewAirport.VVM.Editer.ModelEditer
         public ModelEditerVM()
         {
             CurrentTemplate = new RecurringFlightsTemplateModel();
+            CurrentTemplate.StartDateOfCreatingFlights = DateTime.Now;
+            CurrentTemplate.EndDateOfCreatingFlights = DateTime.Now.AddDays(7);
             LoadFromDB();
             DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();
             SetDaysOfWeek();
