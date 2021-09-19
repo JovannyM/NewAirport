@@ -84,7 +84,10 @@
                                 VerticalAlignment="Top"
                                 HorizontalAlignment="Right"
                                 Width="200"
-                                Content="Создать рейсы" />
+                                Content="Создать рейсы" 
+                                CommandParameter="{Binding Id}"
+                                Command="{Binding ElementName=ThisUC, Path=DataContext.GenerateFlights }"
+                                />
 
 
                             <TextBlock
@@ -140,7 +143,7 @@
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                 Grid.Row="2"
                                 Grid.Column="2"
-                                Text="Понедельник" />
+                                Text="{Binding DepartureFromFirstCityDayOfWeekString}" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -155,9 +158,7 @@
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                 Grid.Row="2"
                                 Grid.Column="4"
-                                Text="Среда" />
-
-
+                                Text="{Binding ArrivalFromFirstCityDayOfWeekString}" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -244,7 +245,7 @@
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                 Grid.Row="6"
                                 Grid.Column="2"
-                                Text="Понедельник" />
+                                Text="{Binding DepartureToSecondCityDayOfWeekString}" />
                             <TextBlock
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -259,7 +260,7 @@
                                 Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                 Grid.Row="6"
                                 Grid.Column="4"
-                                Text="Среда" />
+                                Text="{Binding ArrivalToSecondCityDayOfWeekString}" />
 
 
                             <TextBlock

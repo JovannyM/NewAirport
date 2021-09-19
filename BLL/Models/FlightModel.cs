@@ -5,7 +5,7 @@ namespace BLL.Models
 {
     public class FlightModel : BaseModel
     {
-        
+        public  int? RecurringFlightsTemplate_Id { get; set; }
         [Reactive] public RecurringFlightsTemplateModel RecurringFlightsTemplate { get; set; }
 
         public  int? PairFlight_Id { get; set; }

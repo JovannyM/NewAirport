@@ -167,7 +167,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding CurrentTemplate.DepartureTimeFromFirstCity}"
+                    SelectedTime="{Binding DepartureTimeFromFirstCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время отправления" />
 
@@ -185,7 +185,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding CurrentTemplate.ArrivalTimeFromFirstCity}"
+                    SelectedTime="{Binding ArrivalTimeFromFirstCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время прибытия" />
             </Grid>
@@ -282,7 +282,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding CurrentTemplate.DepartureTimeToSecondCity}"
+                    SelectedTime="{Binding DepartureTimeToSecondCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время отправления" />
 
@@ -300,7 +300,7 @@
                     VerticalAlignment="Top"
                     Margin="20 0 0 0"
                     Width="200"
-                    SelectedTime="{Binding CurrentTemplate.ArrivalTimeToSecondCity}"
+                    SelectedTime="{Binding ArrivalTimeToSecondCity}"
                     Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                     materialDesign:HintAssist.Hint="Время прибытия" />
             </Grid>

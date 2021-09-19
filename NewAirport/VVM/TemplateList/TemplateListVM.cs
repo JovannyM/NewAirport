@@ -47,5 +47,13 @@ namespace NewAirport.VVM.TemplateList
                 new DayOfWeekModel(7, "Воскресенье"),
             });
         }
+
+        private RelayCommand _generateFlights;
+
+        public RelayCommand GenerateFlights => _generateFlights ??= new RelayCommand(obj =>
+        {
+            int templateId = (int)obj;
+            DB.Flights.CreateFlightsByTemplate(templateId);
+        });
     }
 }

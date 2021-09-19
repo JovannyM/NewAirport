@@ -18,6 +18,10 @@ namespace BLL.Models
         [Reactive]
         public int ArrivalFromFirstCityDayOfWeek { get; set; }
 
+        public string DepartureFromFirstCityDayOfWeekString { get; internal set; }
+        public string ArrivalFromFirstCityDayOfWeekString { get; internal set; }
+
+
         [Reactive] public TimeSpan DepartureTimeFromFirstCity { get; set; }
         [Reactive] public TimeSpan ArrivalTimeFromFirstCity { get; set; }
 
@@ -26,6 +30,9 @@ namespace BLL.Models
         /// </summary>
         [Reactive]
         public int DepartureToSecondCityDayOfWeek { get; set; }
+
+        public string DepartureToSecondCityDayOfWeekString { get; internal set; }
+        public string ArrivalToSecondCityDayOfWeekString { get; internal set; }
 
         [Reactive] public TimeSpan DepartureTimeToSecondCity { get; set; }
         [Reactive] public TimeSpan ArrivalTimeToSecondCity { get; set; }

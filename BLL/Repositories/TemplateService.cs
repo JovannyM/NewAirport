@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
@@ -22,7 +23,35 @@ namespace BLL.Repositories
             this.toDal = new Mapper(toDalConfig);
             var toModelConfig = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<RecurringFlightsTemplate, RecurringFlightsTemplateModel>();
+                    cfg.CreateMap<RecurringFlightsTemplate, RecurringFlightsTemplateModel>()
+                        .ForMember("DepartureFromFirstCityDayOfWeekString",
+                            opt => opt.MapFrom((d, m) =>
+                            {
+                                if (d.DepartureTimeFromFirstCity < d.ArrivalTimeFromFirstCity)
+                                    return DayOfWeekModel.DaysOfWeek[d.ArrivalFromFirstCityDayOfWeek].Name;
+                                if (d.ArrivalFromFirstCityDayOfWeek > 1)
+                                    return DayOfWeekModel.DaysOfWeek[d.ArrivalFromFirstCityDayOfWeek - 1].Name;
+                                return DayOfWeekModel.DaysOfWeek[7].Name;
+                            }))
+                        .ForMember("ArrivalFromFirstCityDayOfWeekString",
+                            opt => opt.MapFrom((d, m) =>
+                            {
+                                return DayOfWeekModel.DaysOfWeek[d.ArrivalFromFirstCityDayOfWeek].Name;
+                            }))
+                        .ForMember("DepartureToSecondCityDayOfWeekString",
+                            opt => opt.MapFrom((d, m) =>
+                            {
+                                return DayOfWeekModel.DaysOfWeek[d.DepartureToSecondCityDayOfWeek].Name;
+                            }))
+                        .ForMember("ArrivalToSecondCityDayOfWeekString",
+                            opt => opt.MapFrom((d, m) =>
+                            {
+                                if (d.DepartureTimeToSecondCity < d.ArrivalTimeToSecondCity)
+                                    return DayOfWeekModel.DaysOfWeek[d.DepartureToSecondCityDayOfWeek].Name;
+                                if (d.DepartureToSecondCityDayOfWeek < 7)
+                                    return DayOfWeekModel.DaysOfWeek[d.DepartureToSecondCityDayOfWeek + 1].Name;
+                                return DayOfWeekModel.DaysOfWeek[1].Name;
+                            }));
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }

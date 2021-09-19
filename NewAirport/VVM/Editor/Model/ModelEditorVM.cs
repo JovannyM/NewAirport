@@ -7,7 +7,7 @@ using NewAirport.Utilites;
 
 namespace NewAirport.VVM.Editer.ModelEditer
 {
-    public class ModelEditerVM : BaseVM
+    public partial class ModelEditerVM : BaseVM
     {
         private RecurringFlightsTemplateModel _currentTemplate;
 
@@ -93,5 +93,8 @@ namespace NewAirport.VVM.Editer.ModelEditer
             DB.Templates.Create(CurrentTemplate);
             MessageBox.Show("Шаблон успешно создан");
         });
+
+       
+       
     }
 }

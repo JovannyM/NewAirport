@@ -156,6 +156,7 @@
       <DependentUpon>EditorUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\Editor\EditorVM.cs" />
+    <Compile Include="VVM\Editor\Model\ModelEditorTimePartialVM.cs" />
     <Compile Include="VVM\Editor\Model\ModelEditorUC.xaml.cs">
       <DependentUpon>ModelEditorUC.xaml</DependentUpon>
     </Compile>
