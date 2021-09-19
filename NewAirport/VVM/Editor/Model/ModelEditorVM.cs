@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 using BLL.Models;
 using NewAirport.Utilites;
 
@@ -85,5 +86,12 @@ namespace NewAirport.VVM.Editer.ModelEditer
             ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList());
             ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
         }
+
+        private RelayCommand _createTemplate;
+        public RelayCommand CreateTemplate => _createTemplate ??= new RelayCommand(obj =>
+        {
+            DB.Templates.Create(CurrentTemplate);
+            MessageBox.Show("Шаблон успешно создан");
+        });
     }
 }

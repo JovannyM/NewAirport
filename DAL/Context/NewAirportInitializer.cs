@@ -204,29 +204,29 @@ namespace DAL.Context
                 }
             };
 
-            var modelList = new List<RecurringFlightsTemplate>()
-            {
-                new RecurringFlightsTemplate()
-                {
-                    FirstAirport = airportList[9],
-                    SecondAirport = airportList[10],
-                    Airplane = airplaneList[0],
-
-                    ArrivalFromFirstCityDayOfWeek = 2,
-                    DepartureTimeFromFirstCity = new TimeSpan(8, 0, 0),
-                    ArrivalTimeFromFirstCity = new TimeSpan(10, 15, 0),
-
-                    DepartureToSecondCityDayOfWeek = 4,
-                    DepartureTimeToSecondCity = new TimeSpan(20, 0, 0),
-                    ArrivalTimeToSecondCity = new TimeSpan(1, 30, 0),
-                    StartDateOfCreatingFlights = DateTime.Today,
-                    EndDateOfCreatingFlights = DateTime.Today.AddDays(14)
-                },
-            };
+            // var modelList = new List<RecurringFlightsTemplate>()
+            // {
+            //     new RecurringFlightsTemplate()
+            //     {
+            //         FirstAirport = airportList[9],
+            //         SecondAirport = airportList[10],
+            //         Airplane = airplaneList[0],
+            //
+            //         ArrivalFromFirstCityDayOfWeek = 2,
+            //         DepartureTimeFromFirstCity = new TimeSpan(8, 0, 0),
+            //         ArrivalTimeFromFirstCity = new TimeSpan(10, 15, 0),
+            //
+            //         DepartureToSecondCityDayOfWeek = 4,
+            //         DepartureTimeToSecondCity = new TimeSpan(20, 0, 0),
+            //         ArrivalTimeToSecondCity = new TimeSpan(1, 30, 0),
+            //         StartDateOfCreatingFlights = DateTime.Today,
+            //         EndDateOfCreatingFlights = DateTime.Today.AddDays(14)
+            //     },
+            // };
 
             airportList.ForEach(e => context.Airports.Add(e));
             airplaneList.ForEach(e => context.Airplanes.Add(e));
-            modelList.ForEach(e => context.RecurringFlightsTemplates.Add(e));
+            // modelList.ForEach(e => context.RecurringFlightsTemplates.Add(e));
 
             context.SaveChanges();
         }

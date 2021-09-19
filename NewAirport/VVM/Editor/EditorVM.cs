@@ -43,7 +43,8 @@ namespace NewAirport.VVM.Editer
                 CurrentPage = (obj as string) switch
                 {
                     "ScheduleEditer" => AllUserControl.GetUC(ALLUC.ScheduleEditerUC),
-                    "ModelEditer" => AllUserControl.GetUC(ALLUC.ModelEditerUC),
+                    "Templates" => AllUserControl.GetUC(ALLUC.TemplatesUC),
+                    "CreateTemplate" => AllUserControl.GetUC(ALLUC.ModelEditerUC),
                     _ => throw new System.NotImplementedException()
                 };
             });

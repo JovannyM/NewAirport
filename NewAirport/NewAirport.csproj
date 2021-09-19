@@ -187,6 +187,10 @@
       <DependentUpon>SelectCurrentCityUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\SelectCurrentCity\SelectCurrentCityVM.cs" />
+    <Compile Include="VVM\TemplateList\TemplateListUC.xaml.cs">
+      <DependentUpon>TemplateListUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VVM\TemplateList\TemplateListVM.cs" />
     <Page Include="VVM\Additional\DateTimePickerWin.xaml" />
     <Page Include="VVM\Editor\EditorUC.xaml">
       <SubType>Designer</SubType>
@@ -204,6 +208,7 @@
     <Page Include="VVM\MenuAndContent\MenuAndContentUC.xaml" />
     <Page Include="VVM\Schedule\ScheduleUC.xaml" />
     <Page Include="VVM\SelectCurrentCity\SelectCurrentCityUC.xaml" />
+    <Page Include="VVM\TemplateList\TemplateListUC.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
