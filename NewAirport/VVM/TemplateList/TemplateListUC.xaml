@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NewAirport.VVM.TemplateList"
              mc:Ignorable="d"
              Name="ThisUC"
-             d:DesignHeight="1000" d:DesignWidth="1150"
+             d:DesignHeight="500" d:DesignWidth="1150"
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,8 +20,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <ItemsControl
-            Grid.Row="1"
-            Margin="10 0 10 10"
+            Margin="10 0 10 0"
             ItemsSource="{Binding Templates}"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ItemsControl.ItemTemplate>
@@ -33,26 +32,309 @@
 
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="4*"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Top"
                                 Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                                 HorizontalAlignment="Right"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Text="{Binding StringFormat=Шаблон №: {0}, Path=Id}" />
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="3"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Center"
+                                Margin="0"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="Запланирован борт № " />
+                                <TextBlock
+                                    FontWeight="DemiBold"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Text="{Binding Airplane.Name}" />
+                            </StackPanel>
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Right"
+                                Width="200"
+                                Content="Создать рейсы" />
+
+
+                            <TextBlock
+                                FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Right"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="ПРИБЫВАЮЩИЙ РЕЙС" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Из аэропорта" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Text="{Binding Path=FirstAirport.Name}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Text="В аэропорт" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                Text="{Binding ElementName=ThisUC, Path=DataContext.CurrentAirport}" />
+
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="День отправления" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Text="Понедельник" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                Text="День прибытия" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="2"
+                                Grid.Column="4"
+                                Text="Среда" />
+
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Text="Время отправления" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Text="{Binding DepartureTimeFromFirstCity}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                Text="Время прибытия" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="3"
+                                Grid.Column="4"
+                                Text="{Binding ArrivalTimeFromFirstCity}" />
+
+                            <!-- ОТПРАВЕЛНИЕ -->
+
+                            <TextBlock
+                                FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Right"
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Text="УБЫВАЮЩИЙ РЕЙС" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Text="Из аэропорта" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Text="{Binding ElementName=ThisUC, Path=DataContext.CurrentAirport}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="5"
+                                Grid.Column="3"
+                                Text="В аэропорт" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="5"
+                                Grid.Column="4"
+                                Text="{Binding Path=SecondAirport.Name}" />
+
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Text="День отправления" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Text="Понедельник" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="6"
+                                Grid.Column="3"
+                                Text="День прибытия" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="6"
+                                Grid.Column="4"
+                                Text="Среда" />
+
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                Text="Время отправления" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="7"
+                                Grid.Column="2"
+                                Text="{Binding DepartureTimeToSecondCity}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="7"
+                                Grid.Column="3"
+                                Text="Время прибытия" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                Grid.Row="7"
+                                Grid.Column="4"
+                                Text="{Binding ArrivalTimeToSecondCity}" />
+
+                            <!-- Время -->
+
+                            <TextBlock
+                                FontWeight="Bold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Right"
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Text="ВРЕМЯ ГЕНЕРАЦИИ" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="9"
+                                Grid.Column="1"
+                                Text="Старт генерации" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Left"
+                                Grid.Row="9"
+                                Grid.Column="2"
+                                Text="{Binding StartDateOfCreatingFlights}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Center"
+                                Grid.Row="9"
+                                Grid.Column="3"
+                                Text="Окончание генерации" />
+                            <TextBlock
+                                FontWeight="DemiBold"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                HorizontalAlignment="Left"
+                                Grid.Row="9"
+                                Grid.Column="4"
+                                Text="{Binding EndDateOfCreatingFlights}" />
+
+                            <!--
                             <TextBlock
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
@@ -61,10 +343,7 @@
                                 Grid.Column="1"
                                 Grid.ColumnSpan="3"
                                 Text="{Binding StringFormat=Борт номер: {0}, Path=Airplane.Name}" />
-                            <Button
-                                Grid.Column="4"
-                                Content="Сгенерировать" Background="#FFF46603"
-                                />
+                            
 
                             <TextBlock                                
                                 FontWeight="Bold"
@@ -183,10 +462,9 @@
                                     Text="{Binding ArrivalTimeFromFirstCity}"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"/>
-                            </StackPanel>
+                            </StackPanel>-->
+
                         </Grid>
-
-
                     </materialDesign:Card>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

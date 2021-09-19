@@ -6,7 +6,17 @@ namespace NewAirport.VVM.TemplateList
 {
     public class TemplateListVM : BaseVM
     {
-        public List<RecurringFlightsTemplateModel> Templates => DB.Templates.GetList();
+        private List<RecurringFlightsTemplateModel> _templates;
+
+        public List<RecurringFlightsTemplateModel> Templates
+        {
+            get => _templates;
+            set
+            {
+                _templates = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string CurrentAirport => DB.Airports.MainAirport.Name;
 
@@ -15,8 +25,15 @@ namespace NewAirport.VVM.TemplateList
         public TemplateListVM()
         {
             SetDaysOfWeek();
+            setTemplate();
+            DB.OnUpdateDbEvent += (sender, args) => setTemplate();
         }
-        
+
+        private void setTemplate()
+        {
+            Templates = DB.Templates.GetList();
+        }
+
         private void SetDaysOfWeek()
         {
             DaysOfWeek = new List<DayOfWeekModel>(new[]
