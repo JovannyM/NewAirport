@@ -33,18 +33,5 @@ namespace NewAirport.VVM
             else
                 CurrentPage = AllUserControl.GetUC(ALLUC.MenuAndContentUC);
         }
-
-        private RelayCommand _goToCurrentPage;
-
-        public RelayCommand GoToCurrentPage =>
-            _goToCurrentPage ??= new RelayCommand(obj =>
-            {
-                CurrentPage = (obj as string) switch
-                {
-                    "Schedule" => AllUserControl.GetUC(ALLUC.ScheduleUC),
-                    "Editor" => AllUserControl.GetUC(ALLUC.EditerUC),
-                    _ => throw new System.NotImplementedException()
-                };
-            });
     }
 }

@@ -8,14 +8,13 @@
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:scheduleEditer="clr-namespace:NewAirport.VVM.Editor.Schedule"
-             xmlns:scheduleEditer1="clr-namespace:NewAirport.VVM.Editor.Schedule"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}">
 
     <UserControl.DataContext>
-        <scheduleEditer1:ScheduleEditorVM />
+        <scheduleEditer:ScheduleEditorVM />
     </UserControl.DataContext>
 
     <Grid>

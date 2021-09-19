@@ -19,9 +19,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
             <RowDefinition Height="1*" />
-            <RowDefinition />
+            <RowDefinition Height="1*" />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -33,7 +32,7 @@
         </materialDesign:ColorZone>
         <TextBlock
             Grid.Row="0"
-            Text="Система управелния аэропортом"
+            Text="Система управления аэропортом"
             Foreground="AliceBlue"
             FontWeight="Normal"
             HorizontalAlignment="Center"
@@ -46,21 +45,31 @@
             VerticalAlignment="Top"
             Foreground="{StaticResource MaterialDesignDarkForeground}" />
         <TextBlock
-            Grid.Row="2"
-            Text="Выберите город в котором будет работать система"
+            Grid.Row="1"
+            Text="Выберите город, в котором будет работать система"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Foreground="{StaticResource MaterialDesignDarkForeground}" />
         <ComboBox
+            Grid.Row="2"
+            Margin="0 10 0 0"
             Width="250"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Grid.Row="3"
             ItemsSource="{Binding ListOfAirports}"
             DisplayMemberPath="Name"
             SelectedValuePath="Id"
             SelectedValue="{Binding SelectedAirportId}"
             Background="#50FFFFFF"
-            BorderBrush="#89FFFFFF" />
+            BorderBrush="#89FFFFFF" Foreground="#DD000000" />
+        <Button 
+            Grid.Row="2"
+            Width="250"
+            VerticalAlignment="Bottom"
+            Content="Начать" 
+            Background="#60F44503"
+            BorderBrush="#B2FFFFFF" 
+            Foreground="#B2FFFFFF"
+            Command="{Binding SetCurrentAirport}"/>
     </Grid>
 </UserControl>

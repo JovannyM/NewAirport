@@ -5,7 +5,7 @@ namespace NewAirport.VVM.Editor.Schedule
 {
     public partial class ScheduleEditorVM
     {
-        private string _forCreateCityLabel = "Город отправления";
+        private string _forCreateCityLabel = "Город прибытия";
         private bool _isDeparture = true;
         private FlightModel _creatingFlight;
         private ObservableCollection<AirplaneModel> _listOfAirplane;
@@ -35,8 +35,7 @@ namespace NewAirport.VVM.Editor.Schedule
             get => CreatingFlight.IsDeparture;
             set
             {
-               // _isDeparture = value;
-                ForCreateCityLabel = _isDeparture ? "Город прибытия" : "Город отправления";
+                ForCreateCityLabel = CreatingFlight.IsDeparture ? "Город отправления" : "Город прибытия";
                 CreatingFlight.IsDeparture = value;
                 OnPropertyChanged();
             }

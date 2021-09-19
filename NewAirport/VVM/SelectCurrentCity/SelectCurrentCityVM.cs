@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using BLL.Models;
 using NewAirport.Utilites;
 
@@ -12,10 +11,21 @@ namespace NewAirport.VVM.SelectCurrentCity
             get => DB.Airports.GetList();
         }
 
+        private int _selectedAirportId = 1;
+
         public int SelectedAirportId
         {
-            get => 1;
-            set { DB.Airports.SetMainAirportId(value); }
+            get => _selectedAirportId;
+            set
+            {
+                _selectedAirportId = value;
+                OnPropertyChanged();
+            }
         }
+
+        private RelayCommand _setCurrentAirport;
+
+        public RelayCommand SetCurrentAirport =>
+            _setCurrentAirport ??= new RelayCommand(obj => { DB.Airports.SetMainAirportId(SelectedAirportId); });
     }
 }

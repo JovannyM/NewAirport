@@ -36,9 +36,14 @@ namespace BLL.Repositories
                                                          ((f.IsDeparture && f.DepartureDate >= startTimeCheck &&
                                                            f.DepartureDate <= endTimeChek) ||
                                                           (!f.IsDeparture && f.ArrivalDate >= startTimeCheck &&
-                                                           f.ArrivalDate <= endTimeChek)));
-            if (conflictsFlights.Count() == 0) return (true, "МОжно создавать пупу");
-            return (false, "Пупа не пупа");
+                                                           f.ArrivalDate <= endTimeChek))).ToList();
+            
+            if (conflictsFlights.Count() == 0) return (true, "Рейс успешно добавлен");
+            var firstConflictFlight = conflictsFlights.FirstOrDefault();
+            var concflictTime = firstConflictFlight.IsDeparture
+                ? firstConflictFlight.DepartureDate
+                : firstConflictFlight.ArrivalDate;
+            return (false, $"Создание невозможно так как запланирован конфликтный рейст в {concflictTime}");
         }
     }
 }
