@@ -225,7 +225,7 @@
                     <DatePicker
                         Margin="10 0 0 0"
                         Width="150"
-                        SelectedDate="{Binding CreatingFlight.DepartureDate}"
+                        SelectedDate="{Binding DepartureDateForCreate}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата отправления"
                         SelectedDateFormat="Short" Text="1-1-0001" />

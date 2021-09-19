@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using BLL.Models;
 
 namespace NewAirport.VVM.Editor.Schedule
@@ -50,5 +51,26 @@ namespace NewAirport.VVM.Editor.Schedule
                 OnPropertyChanged();
             }
         }
+
+        public DateTime DepartureDateForCreate
+        {
+            get => CreatingFlight.DepartureDate;
+            set
+            {
+                CreatingFlight.DepartureDate = value.Date + CreatingFlight.DepartureDate.TimeOfDay;
+            }
+        }
+
+        public DateTime ArrivalDateForCreate
+        {
+            get => CreatingFlight.ArrivalDate;
+            set
+            {
+                CreatingFlight.ArrivalDate = value.Date + CreatingFlight.ArrivalDate.TimeOfDay;
+            }
+        }
+        
+        
+        
     }
 }
