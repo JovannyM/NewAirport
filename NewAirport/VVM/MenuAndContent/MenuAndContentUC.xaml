@@ -6,16 +6,17 @@
              xmlns:local="clr-namespace:NewAirport.VVM.MenuAndContent"
              mc:Ignorable="d"
              d:DesignHeight="680" d:DesignWidth="1440"
-             
+
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="{materialDesign:MaterialDesignFont}">
+
     <UserControl.DataContext>
-        <local:MenuAndContentVM/>
+        <local:MenuAndContentVM />
     </UserControl.DataContext>
-    
+
     <UserControl.Resources>
         <Style BasedOn="{StaticResource MaterialDesignTabRadioButton}" x:Key="MenuItem" TargetType="RadioButton">
             <Setter Property="Foreground" Value="{StaticResource MaterialDesignDarkForeground}" />
@@ -23,7 +24,7 @@
             <Setter Property="FontWeight" Value="Normal" />
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -81,8 +82,8 @@
                 </StackPanel>
             </Grid>
         </materialDesign:ColorZone>
-        <Grid 
-            Grid.Row="1" 
+        <Grid
+            Grid.Row="1"
             Grid.Column="1">
             <ContentControl Content="{Binding CurrentPage}" />
         </Grid>

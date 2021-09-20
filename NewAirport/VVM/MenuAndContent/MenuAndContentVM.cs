@@ -29,6 +29,7 @@ namespace NewAirport.VVM.MenuAndContent
                 {
                     "Schedule" => AllUserControl.GetUC(ALLUC.ScheduleUC),
                     "Editor" => AllUserControl.GetUC(ALLUC.EditerUC),
+                    "Library" => AllUserControl.GetUC(ALLUC.LibraryEditerUC),
                     _ => throw new System.NotImplementedException()
                 };
             });

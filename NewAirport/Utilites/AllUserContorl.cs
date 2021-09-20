@@ -3,6 +3,7 @@ using NewAirport.VVM.Editer.ModelEditer;
 using NewAirport.VVM.Editor.Schedule;
 using NewAirport.VVM.Schedule;
 using System.Windows.Controls;
+using NewAirport.VVM.Editor.Libruary;
 using NewAirport.VVM.MenuAndContent;
 using NewAirport.VVM.SelectCurrentCity;
 using NewAirport.VVM.TemplateList;
@@ -17,7 +18,8 @@ namespace NewAirport.Utilites
         EditerUC,
         ModelEditerUC,
         ScheduleEditerUC,
-        TemplatesUC
+        TemplatesUC,
+        LibraryEditerUC
     }
     class AllUserContorl : IAllUserControl
     {
@@ -28,6 +30,7 @@ namespace NewAirport.Utilites
         private EditerUC editerUC;
         private ModelEditerUC modelEditerUC;
         private ScheduleEditerUC scheduleEditerUC;
+        private LibraryEditorUC _libraryEditorUc;
 
         public UserControl GetUC(ALLUC uc)
         {
@@ -40,6 +43,7 @@ namespace NewAirport.Utilites
                 ALLUC.ModelEditerUC => modelEditerUC ??= new ModelEditerUC(),
                 ALLUC.ScheduleEditerUC => scheduleEditerUC ??= new ScheduleEditerUC(),
                 ALLUC.TemplatesUC => templateListUC ??= new TemplateListUC(),
+                ALLUC.LibraryEditerUC => _libraryEditorUc ??= new LibraryEditorUC(),
                 _ => throw new System.NotImplementedException()
             };
         }
