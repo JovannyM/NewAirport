@@ -25,17 +25,7 @@ namespace NewAirport.VVM.Editer
         {
             CurrentPage = AllUserControl.GetUC(ALLUC.ScheduleEditerUC);
         }
-
-        private RelayCommand _createFlightCommand;
-        public RelayCommand CreateFlighRelayCommand =>
-            _createFlightCommand ??= new RelayCommand(obj =>
-            {
-                foreach (var model in DB.Templates.GetList())
-                {
-                    DB.Flights.CreateFlightsByTemplate(model.Id);
-                }
-            });
-
+        
         private RelayCommand _goToCurrentPage;
         public RelayCommand GoToCurrentPage =>
             _goToCurrentPage ??= new RelayCommand(obj =>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using BLL.Models;
 using NewAirport.Utilites;
 
@@ -39,7 +40,8 @@ namespace NewAirport.VVM.TemplateList
         public RelayCommand GenerateFlights => _generateFlights ??= new RelayCommand(obj =>
         {
             int templateId = (int)obj;
-            DB.Flights.CreateFlightsByTemplate(templateId);
+            var message = DB.Flights.CreateFlightsByTemplate(templateId);
+            MessageBox.Show(message);
         });
     }
 }

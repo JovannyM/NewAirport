@@ -96,7 +96,7 @@ namespace NewAirport.VVM.Editor.Schedule
         public RelayCommand CheckAndSave =>
             _checkAndSave ??= new RelayCommand(obj =>
             {
-                DB.Flights.Update(SelectedFlight);
+                DB.Flights.Update(SelectedFlight);  //TODO переделать в другой метод
             });
       
     }

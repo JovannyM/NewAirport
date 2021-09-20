@@ -35,18 +35,13 @@ namespace BLL.Repositories
                         .ForMember("DepartureAirport",
                             opt =>
                             {
-                                opt.MapFrom((d, m) =>
-                                {
-                                    return d.IsDeparture ? UOW.Airports.MainAirport : m.Airport;
-                                });
+                                opt.MapFrom((d, m) => { return d.IsDeparture ? UOW.Airports.MainAirport : m.Airport; });
                             })
-                        .ForMember("ArrivalAirport", opt =>
-                        {
-                            opt.MapFrom((d, m) =>
+                        .ForMember("ArrivalAirport",
+                            opt =>
                             {
-                                return d.IsDeparture ? m.Airport : UOW.Airports.MainAirport;
+                                opt.MapFrom((d, m) => { return d.IsDeparture ? m.Airport : UOW.Airports.MainAirport; });
                             });
-                        });
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }
@@ -55,8 +50,9 @@ namespace BLL.Repositories
         }
 
 
-        public void CreateFlightsByTemplate(int templateId)
+        public string CreateFlightsByTemplate(int templateId)
         {
+            string message = "";
             var template = DB.RecurringFlightsTemplates.Find(templateId);
 
             DateTime PossibleFirstFlightArrivalDate = template.StartDateOfCreatingFlights;
@@ -122,19 +118,31 @@ namespace BLL.Repositories
                     Edited = false,
                     RecurringFlightsTemplate = template,
                 };
-                DbSet.AddRange(new[] { arrivalFlightFromFirstCity, departureFlightToSecondCity });
-                UOW.Save();
-                arrivalFlightFromFirstCity.PairFlight_Id = departureFlightToSecondCity.Id;
-                departureFlightToSecondCity.PairFlight_Id = arrivalFlightFromFirstCity.Id;
-                UOW.Save();
+                var CheckFirst = CheckFlights(toModel.Map<FlightModel>(arrivalFlightFromFirstCity));
+                var CheckSecond = CheckFlights(toModel.Map<FlightModel>(departureFlightToSecondCity));
+                if (CheckFirst.isCreate && CheckSecond.isCreate)
+                {
+                    DbSet.AddRange(new[] { arrivalFlightFromFirstCity, departureFlightToSecondCity });
+                    UOW.Save();
+                    arrivalFlightFromFirstCity.PairFlight_Id = departureFlightToSecondCity.Id;
+                    departureFlightToSecondCity.PairFlight_Id = arrivalFlightFromFirstCity.Id;
+                    UOW.Save();
+                    message += $"Прилёт {arrivalFlightFromFirstCity.ArrivalDate}\n";
+                    message += $"Отлёт {departureFlightToSecondCity.DepartureDate}\n";
+                }
+                else
+                {
+                    message += $"Невозможно создать рейс, потому что {arrivalFlightFromFirstCity.ArrivalDate} запланирован рейс\n";
+                    message += $"Невозможно создать рейс, потому что {departureFlightToSecondCity.ArrivalDate} запланирован рейс\n";
+                }
 
                 firstFlightDepartureDate = firstFlightDepartureDate.AddDays(7);
                 firstFlightArrivalDate = firstFlightArrivalDate.AddDays(7);
-                secondFlightDepartureDate = firstFlightArrivalDate.AddDays(7);
+                secondFlightDepartureDate = secondFlightDepartureDate.AddDays(7);
                 secondFlightArrivalDate = secondFlightArrivalDate.AddDays(7);
             }
 
-            UOW.Save();
+            return message.Length>0? message:"Никаких рейсов создать не удалось";
         }
 
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight)

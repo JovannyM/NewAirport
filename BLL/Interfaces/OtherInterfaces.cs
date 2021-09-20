@@ -16,7 +16,7 @@ namespace BLL.Interfaces
 
     public interface IFlightRepository : IService<FlightModel>
     {
-        public void CreateFlightsByTemplate(int templateId);
+        public string CreateFlightsByTemplate(int templateId);
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight);
         public (bool isCreate, string message) CreateFlight(FlightModel flight);
         public (bool isCreate, string message) CheckFlights(FlightModel flight);
