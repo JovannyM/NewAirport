@@ -13,6 +13,7 @@ namespace NewAirport.VVM.Schedule
     public class ScheduleVM : BaseVM
     {
         private ObservableCollection<FlightModel> _flights;
+
         public ObservableCollection<FlightModel> Flights
         {
             get => _flights;
@@ -26,12 +27,12 @@ namespace NewAirport.VVM.Schedule
         public ScheduleVM()
         {
             Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
-            DB.OnUpdateDbEvent += GetFlights;
+            DB.OnUpdateDbEvent += (e, a) => { GetFlights(); };
         }
 
-        private void GetFlights(object sender, EventArgs e)
+        private void GetFlights()
         {
-            Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
+            Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList(true));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace NewAirport.VVM.Editer.ModelEditer
 
         private ObservableCollection<AirplaneModel> _listOfAirplane;
 
-        public ObservableCollection<AirplaneModel> ListOfAirplane   //TODO убрать самолёты, которые уже используются
+        public ObservableCollection<AirplaneModel> ListOfAirplane  
         {
             get => _listOfAirplane;
             set
@@ -61,8 +61,8 @@ namespace NewAirport.VVM.Editer.ModelEditer
 
         private void LoadFromDB()
         {
-            ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList());
-            ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList());
+            ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList(true));
+            ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetList()); //TODO убрать текущий аэропорт отовсюду
         }
 
         private RelayCommand _createTemplate;

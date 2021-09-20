@@ -72,7 +72,7 @@ namespace NewAirport.VVM.Editor.Schedule
             CreatingFlight = new FlightModel();
             ListOfFlights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
             ListOfAirports = new ObservableCollection<AirportModel>(DB.Airports.GetListWithoutMain());
-            ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList());
+            ListOfAirplane = new ObservableCollection<AirplaneModel>(DB.Airplanes.GetList(true));
             CreatingFlight.IsDeparture = true;
             CreatingFlight.Airplane_Id = ListOfAirplane.FirstOrDefault()?.Id;
             CreatingFlight.Airport_Id = ListOfAirports.FirstOrDefault()?.Id;

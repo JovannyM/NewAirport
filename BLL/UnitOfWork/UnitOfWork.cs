@@ -22,7 +22,7 @@ namespace BLL.UnitOfWork
             this.db = db;
         }
 
-        public IService<AirplaneModel> Airplanes => airplaneService ??= new AirplaneService(db, this);
+        public IAirplaneService Airplanes => airplaneService ??= new AirplaneService(db, this);
         public IAirportRepository Airports => airportService ??= new AirportService(db, this);
         public IService<RecurringFlightsTemplateModel> Templates => templateService ??= new TemplateService(db, this);
         public IFlightRepository Flights => flightService ??= new FlightService(db, this);

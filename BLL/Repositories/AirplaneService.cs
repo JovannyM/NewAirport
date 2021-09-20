@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
@@ -7,7 +9,7 @@ using DAL.Entities;
 
 namespace BLL.Repositories
 {
-    public class AirplaneService : AbstractService<Airplane, AirplaneModel>
+    public class AirplaneService : AbstractService<Airplane, AirplaneModel>, IAirplaneService
     {
         public AirplaneService(BaseContext db, IUnitOfWork uow) : base(db, db.Airplanes, uow)
         {
@@ -17,6 +19,22 @@ namespace BLL.Repositories
             var toModelConfig = new MapperConfiguration(cfg =>
                 cfg.CreateMap<Airplane, AirplaneModel>());
             this.toModel = new Mapper(toModelConfig);
+        }
+
+        public List<AirplaneModel> GetList(bool withoutUsingAirplane)
+        {
+            if (!withoutUsingAirplane) return base.GetList();
+            var allAirplanes = base.GetList();
+            List<AirplaneModel> returnedList = new List<AirplaneModel>();
+            foreach (var airplane in allAirplanes)
+            {
+                var count = DB.RecurringFlightsTemplates.Where(t => t.Airplane_Id == airplane.Id).Count();
+                if (count == 0)
+                {
+                    returnedList.Add(airplane);
+                }
+            }
+            return returnedList;
         }
     }
 }

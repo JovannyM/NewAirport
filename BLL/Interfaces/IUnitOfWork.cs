@@ -7,7 +7,7 @@ namespace BLL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IService<AirplaneModel> Airplanes { get; }
+        IAirplaneService Airplanes { get; }
         IAirportRepository Airports { get; }
         IService<RecurringFlightsTemplateModel> Templates { get; }
         IFlightRepository Flights { get; }

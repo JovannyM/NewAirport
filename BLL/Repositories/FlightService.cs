@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
@@ -156,6 +157,14 @@ namespace BLL.Repositories
                 return (true, "Успешно обновлено");
             }
             return (checker);
+        }
+
+        public List<FlightModel> GetList(bool sortByDate)
+        {
+            if (!sortByDate) return base.GetList();
+            var listD = DB.Flights.OrderBy(f => f.DepartureDate).ToList();
+            var listModels = toModel.Map<List<Flight>,List<FlightModel>>(listD);
+            return listModels;
         }
     }
 }

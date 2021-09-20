@@ -21,5 +21,11 @@ namespace BLL.Interfaces
         public (bool isCreate, string message) CreateFlight(FlightModel flight);
         public (bool isCreate, string message) CheckFlights(FlightModel flight);
 
+        public List<FlightModel> GetList(bool sortByDate);
+    }
+
+    public interface IAirplaneService : IService<AirplaneModel>
+    {
+        public List<AirplaneModel> GetList(bool withoutUsingAirplane);
     }
 }
