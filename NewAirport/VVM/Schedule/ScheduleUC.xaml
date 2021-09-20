@@ -120,7 +120,7 @@
                                         Padding="-5"
                                         HorizontalAlignment="Right"
                                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                                        Content="Отменить рейс" />
+                                        Content="Отменить рейс" Background="White" />
                                 </Grid>
                             </materialDesign:Card.Content>
                         </materialDesign:Card>

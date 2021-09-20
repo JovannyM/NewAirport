@@ -32,7 +32,7 @@
         <materialDesign:Card
             Grid.Row="0"
             Grid.Column="0"
-            Margin="0 0 10 0">
+            Margin="0 0 5 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -78,7 +78,7 @@
                     Grid.Row="1"
                     Grid.Column="2"
                     Margin="15,0,15,0"
-                    materialDesign:HintAssist.Hint="Floating Hint"
+                    materialDesign:HintAssist.Hint="Аэропорт [Город]"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />
                 <Button
@@ -113,7 +113,7 @@
                     Grid.Row="4"
                     Grid.Column="2"
                     Margin="15 0 15 0"
-                    materialDesign:HintAssist.Hint="Search"
+                    materialDesign:HintAssist.Hint="Аэропорт"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
                     DisplayMemberPath="Id" />
@@ -123,14 +123,14 @@
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
                     Command="{Binding CheckAndSave}"
-                    Content="Исключить аэропорт" Background="White" BorderBrush="Red" />
+                    Content="Исключить аэропорт" Background="White" BorderBrush="#FFFF4600" />
             </Grid>
         </materialDesign:Card>
 
         <materialDesign:Card
             Grid.Row="0"
-            Grid.Column="0"
-            Margin="0 0 10 0">
+            Grid.Column="1"
+            Margin="5 0 0 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -152,7 +152,7 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                    Text="Изменение библиотеки аэропортов"
+                    Text="Изменение библиотеки самолётов"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center" />
                 <TextBlock
@@ -176,7 +176,7 @@
                     Grid.Row="1"
                     Grid.Column="2"
                     Margin="15,0,15,0"
-                    materialDesign:HintAssist.Hint="Floating Hint"
+                    materialDesign:HintAssist.Hint="Модель и Борт№"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />
                 <Button
@@ -185,7 +185,7 @@
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
                     Command="{Binding CheckAndSave}"
-                    Content="Добавить новый аэропорт" Background="White" />
+                    Content="Добавить новый самолёт" Background="White" />
 
 
                 <!-- Editing -->
@@ -196,7 +196,7 @@
                     FontWeight="DemiBold"
                     Margin="0 0 0 5"
                     Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                    Text="УДАЛЕНИЕ"
+                    Text="ИСКЛЮЧЕНИЕ"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center" />
                 <TextBlock
@@ -204,14 +204,14 @@
                     Grid.Column="1"
                     Margin="0 0 0 5"
                     Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                    Text="Выберите аэропорт"
+                    Text="Выберите самолёт"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center" />
                 <ComboBox
                     Grid.Row="4"
                     Grid.Column="2"
                     Margin="15 0 15 0"
-                    materialDesign:HintAssist.Hint="Search"
+                    materialDesign:HintAssist.Hint="Борт №"
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
                     DisplayMemberPath="Id" />
@@ -221,7 +221,7 @@
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
                     Command="{Binding CheckAndSave}"
-                    Content="Исключить аэропорт" Background="White" BorderBrush="Red" />
+                    Content="Исключить самолёт" Background="White" BorderBrush="#FFFF4600" />
             </Grid>
         </materialDesign:Card>
     </Grid>
