@@ -57,7 +57,7 @@
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
                     ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding SelectedFlight}"
+                    SelectedItem="{Binding UpdatedFlight}"
                     DisplayMemberPath="Id" />
 
 
@@ -78,7 +78,7 @@
                     ItemsSource="{Binding ListOfAirports}"
                     DisplayMemberPath="Name"
                     SelectedValuePath="Id"
-                    SelectedValue="{Binding SelectedFlight.Airport_Id}" />
+                    SelectedValue="{Binding UpdatedFlight.Airport_Id}" />
 
 
                 <TextBlock
@@ -97,14 +97,14 @@
                     <DatePicker
                         Margin="10 0 0 0"
                         Width="150"
-                        SelectedDate="{Binding SelectedFlight.DepartureDate}"
+                        SelectedDate="{Binding UpdatedFlight.DepartureDate}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата отправления"
                         SelectedDateFormat="Short" Text="1-1-0001" />
                     <materialDesign:TimePicker
                         Margin="20 0 0 0"
                         Width="150"
-                        SelectedTime="{Binding SelectedFlight.DepartureDate}"
+                        SelectedTime="{Binding UpdatedFlight.DepartureDate}"
                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                         materialDesign:HintAssist.Hint="Время отправления" />
                     <TextBlock
@@ -115,13 +115,13 @@
                         HorizontalAlignment="Right" />
                     <DatePicker
                         Width="150"
-                        SelectedDate="{Binding SelectedFlight.ArrivalDate}"
+                        SelectedDate="{Binding UpdatedFlight.ArrivalDate}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата прибытия" />
                     <materialDesign:TimePicker
                         Margin="20 0 0 0"
                         Width="150"
-                        SelectedTime="{Binding SelectedFlight.ArrivalDate}"
+                        SelectedTime="{Binding UpdatedFlight.ArrivalDate}"
                         Style="{StaticResource MaterialDesignFloatingHintTimePicker}"
                         materialDesign:HintAssist.Hint="Время прибытия" />
                 </StackPanel>
@@ -243,7 +243,7 @@
                         HorizontalAlignment="Right" />
                     <DatePicker
                         Width="150"
-                        SelectedDate="{Binding CreatingFlight.ArrivalDate}"
+                        SelectedDate="{Binding ArrivalDateForCreate}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата прибытия" />
                     <materialDesign:TimePicker

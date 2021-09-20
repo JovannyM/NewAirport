@@ -69,7 +69,24 @@ namespace NewAirport.VVM.Editor.Schedule
                 CreatingFlight.ArrivalDate = value.Date + CreatingFlight.ArrivalDate.TimeOfDay;
             }
         }
-        
+
+        public DateTime DepartureDateForUpdate
+        {
+            get => UpdatedFlight.DepartureDate;
+            set
+            {
+                UpdatedFlight.DepartureDate = value.Date + UpdatedFlight.DepartureDate.TimeOfDay;
+            }
+        }
+
+        public DateTime ArrivalDateForUpdate
+        {
+            get => UpdatedFlight.ArrivalDate;
+            set
+            {
+                UpdatedFlight.ArrivalDate = value.Date + UpdatedFlight.ArrivalDate.TimeOfDay;
+            }
+        }
         
         
     }

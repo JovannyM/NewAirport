@@ -149,7 +149,13 @@ namespace BLL.Repositories
 
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight)
         {
-            throw new System.NotImplementedException();
+            var checker = CheckFlights(flight);
+            if (checker.isCreate)
+            {
+                this.Update(flight);
+                return (true, "Успешно обновлено");
+            }
+            return (checker);
         }
     }
 }

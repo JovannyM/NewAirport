@@ -12,11 +12,9 @@ namespace NewAirport.VVM.Editor.Schedule
     {
         private ObservableCollection<FlightModel> _listOfFlights;
         private ObservableCollection<AirportModel> _listOfAirport;
-        private FlightModel _selectedFlight;
-        private FlightModel _editableFlight;
+        private FlightModel _updatedFlight;
         private string _forEditCityLabel = "Город...";
-        
-        
+
 
         public string ForEditCityLabel
         {
@@ -37,7 +35,7 @@ namespace NewAirport.VVM.Editor.Schedule
                 OnPropertyChanged();
             }
         }
-        
+
         public ObservableCollection<AirportModel> ListOfAirports
         {
             get => _listOfAirport;
@@ -47,25 +45,24 @@ namespace NewAirport.VVM.Editor.Schedule
                 OnPropertyChanged();
             }
         }
-        
-        public FlightModel SelectedFlight
+
+        public FlightModel UpdatedFlight
         {
-            get => _selectedFlight;
+            get => _updatedFlight;
             set
             {
-                _selectedFlight = value;
+                _updatedFlight = value;
                 if (value != null)
                 {
-                    ForEditCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";  
+                    ForEditCityLabel = value.IsDeparture ? "Город отправления" : "Город прибытия";
                 }
 
                 OnPropertyChanged();
             }
         }
-   
+
         public ScheduleEditorVM()
         {
-      
             LoadFromDB();
             DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();
         }
@@ -93,11 +90,15 @@ namespace NewAirport.VVM.Editor.Schedule
             });
 
         private RelayCommand _checkAndSave;
+
         public RelayCommand CheckAndSave =>
             _checkAndSave ??= new RelayCommand(obj =>
             {
-                DB.Flights.Update(SelectedFlight);  //TODO переделать в другой метод
+                if (UpdatedFlight != null)
+                {
+                    var checker = DB.Flights.CheckAndUpdate(UpdatedFlight);
+                    MessageBox.Show(checker.message);
+                }
             });
-      
     }
 }

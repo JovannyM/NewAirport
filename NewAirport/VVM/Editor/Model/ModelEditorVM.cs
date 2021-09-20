@@ -23,7 +23,7 @@ namespace NewAirport.VVM.Editer.ModelEditer
 
         private ObservableCollection<AirplaneModel> _listOfAirplane;
 
-        public ObservableCollection<AirplaneModel> ListOfAirplane
+        public ObservableCollection<AirplaneModel> ListOfAirplane   //TODO убрать самолёты, которые уже используются
         {
             get => _listOfAirplane;
             set

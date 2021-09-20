@@ -43,7 +43,7 @@ namespace BLL.Repositories
             var concflictTime = firstConflictFlight.IsDeparture
                 ? firstConflictFlight.DepartureDate
                 : firstConflictFlight.ArrivalDate;
-            return (false, $"Создание невозможно так как запланирован конфликтный рейст в {concflictTime}");
+            return (false, $"Создание/обновление невозможно так как запланирован конфликтный рейст в {concflictTime}");
         }
     }
 }
