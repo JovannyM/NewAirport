@@ -48,6 +48,7 @@ namespace BLL.Repositories
 
         public virtual List<M> GetList()
         {
+            //TODO Flights надо сортировать по времени
             var listD = DbSet.ToList();
             var listModels = toModel.Map<List<D>,List<M>>(listD);
             return listModels;

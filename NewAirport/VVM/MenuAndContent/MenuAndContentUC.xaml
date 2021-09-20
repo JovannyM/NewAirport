@@ -75,6 +75,8 @@
                         IsChecked="False"
                         IsEnabled="True"
                         Content="Библиотека"
+                        Command="{Binding GoToCurrentPage}"
+                        CommandParameter="Library"
                         Visibility="Visible" />
                 </StackPanel>
             </Grid>

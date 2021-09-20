@@ -52,6 +52,8 @@ namespace BLL.Repositories
 
         public string CreateFlightsByTemplate(int templateId)
         {
+            
+            //TODO Сделать проверку на веденные данные (если ли они вообще?, хъотели в конктрутор создавать каждый раз новый current template)
             string message = "";
             var template = DB.RecurringFlightsTemplates.Find(templateId);
 
@@ -127,13 +129,13 @@ namespace BLL.Repositories
                     arrivalFlightFromFirstCity.PairFlight_Id = departureFlightToSecondCity.Id;
                     departureFlightToSecondCity.PairFlight_Id = arrivalFlightFromFirstCity.Id;
                     UOW.Save();
-                    message += $"Прилёт {arrivalFlightFromFirstCity.ArrivalDate}\n";
-                    message += $"Отлёт {departureFlightToSecondCity.DepartureDate}\n";
+                    message += $"Прибытие успешно добавлено {arrivalFlightFromFirstCity.ArrivalDate}\n";
+                    message += $"Отправление успешно добавлено {departureFlightToSecondCity.DepartureDate}\n";
                 }
                 else
                 {
-                    message += $"Невозможно создать рейс, потому что {arrivalFlightFromFirstCity.ArrivalDate} запланирован рейс\n";
-                    message += $"Невозможно создать рейс, потому что {departureFlightToSecondCity.ArrivalDate} запланирован рейс\n";
+                    message += $"Невозможно создать прибытие, потому что {arrivalFlightFromFirstCity.ArrivalDate} запланирован рейс\n";
+                    message += $"Невозможно создать отправление, потому что {departureFlightToSecondCity.ArrivalDate} запланирован рейс\n";
                 }
 
                 firstFlightDepartureDate = firstFlightDepartureDate.AddDays(7);
@@ -142,7 +144,7 @@ namespace BLL.Repositories
                 secondFlightArrivalDate = secondFlightArrivalDate.AddDays(7);
             }
 
-            return message.Length>0? message:"Никаких рейсов создать не удалось";
+            return message.Length>0? message:"Рейсы не были добавлены, так как в этот промежуток времени все рейсы этого шаблона уже есть";
         }
 
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight)
