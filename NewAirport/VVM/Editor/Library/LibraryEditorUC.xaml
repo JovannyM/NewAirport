@@ -36,7 +36,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="Auto" />
@@ -81,8 +82,23 @@
                     materialDesign:HintAssist.Hint="Аэропорт [Город]"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />
-                <Button
+                <TextBlock
                     Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="10 0 0 5"
+                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                    Text="Колличество полос"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center" />
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="15,0,15,0"
+                    materialDesign:HintAssist.Hint="Число"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+                <Button
+                    Grid.Row="3"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
@@ -93,7 +109,7 @@
                 <!-- Editing -->
 
                 <TextBlock
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="0"
                     FontWeight="DemiBold"
                     Margin="0 0 0 5"
@@ -102,7 +118,7 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center" />
                 <TextBlock
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="1"
                     Margin="0 0 0 5"
                     Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
@@ -110,7 +126,7 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center" />
                 <ComboBox
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="2"
                     Margin="15 0 15 0"
                     materialDesign:HintAssist.Hint="Аэропорт"
@@ -118,7 +134,7 @@
                     IsEditable="True"
                     DisplayMemberPath="Id" />
                 <Button
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
@@ -128,6 +144,7 @@
         </materialDesign:Card>
 
         <materialDesign:Card
+            VerticalAlignment="Top"
             Grid.Row="0"
             Grid.Column="1"
             Margin="5 0 0 0">
