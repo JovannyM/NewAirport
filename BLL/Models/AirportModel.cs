@@ -7,5 +7,6 @@ namespace BLL.Models
         [Reactive] public string Name { get; set; }
         [Reactive] public int CountOfRunways { get; set; }
         [Reactive] public int SizeOfParking { get; set; }
+      
     }
 }

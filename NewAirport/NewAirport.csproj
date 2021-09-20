@@ -156,6 +156,7 @@
       <DependentUpon>EditorUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\Editor\EditorVM.cs" />
+    <Compile Include="VVM\Editor\Library\LibraryAirportEditorVM.cs" />
     <Compile Include="VVM\Editor\Library\LibraryEditorUC.xaml.cs">
       <DependentUpon>LibraryEditorUC.xaml</DependentUpon>
     </Compile>

@@ -20,5 +20,6 @@ namespace BLL.Models
         // }
 
         [Reactive] public int Id { get; set; }
+        [Reactive] public bool IsDeleted { get; set; } 
     }
 }

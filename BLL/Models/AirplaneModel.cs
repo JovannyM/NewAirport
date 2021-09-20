@@ -7,5 +7,7 @@ namespace BLL.Models
     {
         [Reactive]
         public string Name { get; set; }
+
+       
     }
 }

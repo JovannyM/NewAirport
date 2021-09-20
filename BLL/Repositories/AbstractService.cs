@@ -9,23 +9,23 @@ using DAL.Entities;
 
 namespace BLL.Repositories
 {
-    public class AbstractService<D,M> : IService<M> where D: BaseEntity where M: BaseModel
+    public class AbstractService<D, M> : IService<M> where D : BaseEntity where M : BaseModel
     {
         protected readonly BaseContext DB;
         protected readonly DbSet<D> DbSet;
         protected Mapper toDal;
         protected Mapper toModel;
         protected readonly IUnitOfWork UOW;
-        
+
         public AbstractService(BaseContext db, DbSet<D> dbSet, IUnitOfWork uow)
         {
             DB = db;
             DbSet = dbSet;
             UOW = uow;
         }
-        
+
         public virtual void Create(M item)
-        { 
+        {
             D d = toDal.Map<D>(item);
             DbSet.Add(d);
             UOW.Save();
@@ -33,9 +33,16 @@ namespace BLL.Repositories
 
         public virtual void Delete(int id)
         {
+            // D item = DbSet.Find(id);
+            // if (item != null) DbSet.Remove(item);
+            // UOW.Save();
             D item = DbSet.Find(id);
-            if (item != null) DbSet.Remove(item);
-            UOW.Save();
+            if (item != null)
+            {
+                item.IsDeleted = true;
+                DB.Entry(item).State = EntityState.Modified;
+                UOW.Save();
+            }
         }
 
         public virtual void Update(M model)
@@ -47,11 +54,10 @@ namespace BLL.Repositories
             UOW.Save();
         }
 
-        public virtual List<M> GetList()
+        public virtual List<M> GetList()    //TODO Убрать из списков удалённое(не забыть про переопределения этого метода)
         {
-            //TODO Flights надо сортировать по времени
             var listD = DbSet.ToList();
-            var listModels = toModel.Map<List<D>,List<M>>(listD);
+            var listModels = toModel.Map<List<D>, List<M>>(listD);
             return listModels;
         }
 

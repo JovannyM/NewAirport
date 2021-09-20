@@ -23,5 +23,6 @@ namespace BLL.Models
         [Reactive] public DateTime ArrivalDate { get; set; }
         [Reactive] public bool IsDeparture { get; set; }
         [Reactive] public bool Edited { get; set; }
+      
     }
 }

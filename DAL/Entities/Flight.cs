@@ -24,5 +24,6 @@ namespace DAL.Entities
 
         public bool IsDeparture { get; set; }
         public bool Edited { get; set; }
+        
     }
 }
