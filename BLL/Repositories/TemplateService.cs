@@ -29,9 +29,9 @@ namespace BLL.Repositories
                             {
                                 if (d.DepartureTimeFromFirstCity < d.ArrivalTimeFromFirstCity)
                                     return DayOfWeekModel.DaysOfWeek[d.ArrivalFromFirstCityDayOfWeek].Name;
-                                if (d.ArrivalFromFirstCityDayOfWeek > 1)
+                                if (d.ArrivalFromFirstCityDayOfWeek > 0)
                                     return DayOfWeekModel.DaysOfWeek[d.ArrivalFromFirstCityDayOfWeek - 1].Name;
-                                return DayOfWeekModel.DaysOfWeek[7].Name;
+                                return DayOfWeekModel.DaysOfWeek[6].Name;
                             }))
                         .ForMember("ArrivalFromFirstCityDayOfWeekString",
                             opt => opt.MapFrom((d, m) =>
@@ -48,9 +48,9 @@ namespace BLL.Repositories
                             {
                                 if (d.DepartureTimeToSecondCity < d.ArrivalTimeToSecondCity)
                                     return DayOfWeekModel.DaysOfWeek[d.DepartureToSecondCityDayOfWeek].Name;
-                                if (d.DepartureToSecondCityDayOfWeek < 7)
+                                if (d.DepartureToSecondCityDayOfWeek < 6)
                                     return DayOfWeekModel.DaysOfWeek[d.DepartureToSecondCityDayOfWeek + 1].Name;
-                                return DayOfWeekModel.DaysOfWeek[1].Name;
+                                return DayOfWeekModel.DaysOfWeek[0].Name;
                             }));
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();

@@ -9,14 +9,13 @@ namespace BLL.Models
         {
             _dayOfWeekModels = new List<DayOfWeekModel>()
             {
-                new DayOfWeekModel(0, "Нулевой день недели(ошибка)"),
+                new DayOfWeekModel(0, "Воскресенье"),
                 new DayOfWeekModel(1, "Понедельник"),
                 new DayOfWeekModel(2, "Вторник"),
                 new DayOfWeekModel(3, "Среда"), //it's wendesday, my dudes
                 new DayOfWeekModel(4, "Четверг"),
                 new DayOfWeekModel(5, "Пятница"),
                 new DayOfWeekModel(6, "Суббота"),
-                new DayOfWeekModel(7, "Воскресенье"),
             };
         }
 

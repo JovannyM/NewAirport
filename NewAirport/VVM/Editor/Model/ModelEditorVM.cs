@@ -45,16 +45,9 @@ namespace NewAirport.VVM.Editer.ModelEditer
             }
         }
 
-        private List<DayOfWeekModel> _daysOfWeek;
-
         public List<DayOfWeekModel> DaysOfWeek
         {
-            get => _daysOfWeek;
-            set
-            {
-                _daysOfWeek = value;
-                OnPropertyChanged();
-            }
+            get => DayOfWeekModel.DaysOfWeek;
         }
 
         public ModelEditerVM()
@@ -64,21 +57,6 @@ namespace NewAirport.VVM.Editer.ModelEditer
             CurrentTemplate.EndDateOfCreatingFlights = DateTime.Now.AddDays(7);
             LoadFromDB();
             DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();
-            SetDaysOfWeek();
-        }
-
-        private void SetDaysOfWeek()
-        {
-            DaysOfWeek = new List<DayOfWeekModel>(new[]
-            {
-                new DayOfWeekModel(1, "Понедельник"),
-                new DayOfWeekModel(2, "Вторник"),
-                new DayOfWeekModel(3, "Среда"),
-                new DayOfWeekModel(4, "Четверг"),
-                new DayOfWeekModel(5, "Пятница"),
-                new DayOfWeekModel(6, "Суббота"),
-                new DayOfWeekModel(7, "Воскресенье"),
-            });
         }
 
         private void LoadFromDB()
@@ -88,13 +66,11 @@ namespace NewAirport.VVM.Editer.ModelEditer
         }
 
         private RelayCommand _createTemplate;
+
         public RelayCommand CreateTemplate => _createTemplate ??= new RelayCommand(obj =>
         {
             DB.Templates.Create(CurrentTemplate);
             MessageBox.Show("Шаблон успешно создан");
         });
-
-       
-       
     }
 }

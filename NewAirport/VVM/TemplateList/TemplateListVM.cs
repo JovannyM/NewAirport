@@ -24,7 +24,7 @@ namespace NewAirport.VVM.TemplateList
 
         public TemplateListVM()
         {
-            SetDaysOfWeek();
+          
             setTemplate();
             DB.OnUpdateDbEvent += (sender, args) => setTemplate();
         }
@@ -32,20 +32,6 @@ namespace NewAirport.VVM.TemplateList
         private void setTemplate()
         {
             Templates = DB.Templates.GetList();
-        }
-
-        private void SetDaysOfWeek()
-        {
-            DaysOfWeek = new List<DayOfWeekModel>(new[]
-            {
-                new DayOfWeekModel(1, "Понедельник"),
-                new DayOfWeekModel(2, "Вторник"),
-                new DayOfWeekModel(3, "Среда"),
-                new DayOfWeekModel(4, "Четверг"),
-                new DayOfWeekModel(5, "Пятница"),
-                new DayOfWeekModel(6, "Суббота"),
-                new DayOfWeekModel(7, "Воскресенье"),
-            });
         }
 
         private RelayCommand _generateFlights;
