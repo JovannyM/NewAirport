@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using BLL.Models;
 
@@ -22,14 +24,22 @@ namespace NewAirport.VVM.Editor.Library
 
         public RelayCommand CreateAirport => _createAirport ??= new RelayCommand(o =>
         {
-            if (CreatingAirport.Name?.Length > 6)
+            string errorMessage = "Невозможно добавить аэропорт:\n";
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(CreatingAirport);
+            if (!Validator.TryValidateObject(CreatingAirport, context, results, true))
             {
-                DB.Airports.Create(CreatingAirport);
-                MessageBox.Show("Аэропорт успешно создан");
+                foreach (var error in results)
+                {
+                    errorMessage += error.ErrorMessage + "\n";
+                }
+
+                MessageBox.Show(errorMessage);
             }
             else
             {
-                MessageBox.Show("Ошибка: название аэропорта не может быть короче 6 символов!");
+                DB.Airports.Create(CreatingAirport);
+                MessageBox.Show("Аэропорт успешно создан");
             }
         });
 
@@ -49,7 +59,6 @@ namespace NewAirport.VVM.Editor.Library
             {
                 MessageBox.Show("Выберите аэропорт для удаления");
             }
-
         });
     }
 }

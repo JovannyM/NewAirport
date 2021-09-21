@@ -97,8 +97,11 @@
                     Margin="15,0,15,0"
                     materialDesign:HintAssist.Hint="Число"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    VerticalAlignment="Center"
-                    Text="{Binding CreatingAirport.CountOfRunways}" />
+                    VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="CreatingAirport.CountOfRunways" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"

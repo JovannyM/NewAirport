@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 using BLL.Models;
 using NewAirport.Utilites;
@@ -31,20 +32,28 @@ namespace NewAirport.VVM.Editor.Library
             CreatingAirplane = new AirplaneModel();
             CreatingAirport = new AirportModel();
             OnPropertyChanged("ListOfAirplanes");
+            OnPropertyChanged("ListOfAirports");
         }
 
         private RelayCommand _createAirplane;
 
         public RelayCommand CreateAirplane => _createAirplane ??= new RelayCommand(obj =>
         {
-            if (CreatingAirplane.Name?.Length > 6)
+            string errorMessage = "Невозможно добавить самолёт:\n";
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(CreatingAirplane);
+            if (!Validator.TryValidateObject(CreatingAirplane, context, results, true))
             {
-                DB.Airplanes.Create(CreatingAirplane);
-                MessageBox.Show("Успешно создано");
+                foreach (var error in results)
+                {
+                    errorMessage += error.ErrorMessage + "\n";
+                }
+                MessageBox.Show(errorMessage);
             }
             else
             {
-                MessageBox.Show("Ошибка: название самолёта не может быть короче 6 символов!");
+                DB.Airplanes.Create(CreatingAirplane);
+                MessageBox.Show("Аэропорт успешно создан");
             }
         });
 
