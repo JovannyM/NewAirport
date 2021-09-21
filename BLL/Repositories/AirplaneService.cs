@@ -28,7 +28,7 @@ namespace BLL.Repositories
             List<AirplaneModel> returnedList = new List<AirplaneModel>();
             foreach (var airplane in allAirplanes)
             {
-                var count = DB.RecurringFlightsTemplates.Where(t => t.Airplane_Id == airplane.Id).Count();
+                var count = DB.RecurringFlightsTemplates.Where(t => t.Airplane_Id == airplane.Id && t.IsDeleted==false).Count();
                 if (count == 0)
                 {
                     returnedList.Add(airplane);
