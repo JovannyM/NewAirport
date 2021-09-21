@@ -88,7 +88,7 @@
                     Grid.Column="1"
                     Margin="10 0 0 5"
                     Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                    Text="Колличество полос"
+                    Text="Количество полос"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center" />
                 <TextBox
@@ -99,7 +99,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center">
                     <TextBox.Text>
-                        <Binding Path="CreatingAirport.CountOfRunways" UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="CreatingAirport.CountOfRunways" />
                     </TextBox.Text>
                 </TextBox>
                 <Button

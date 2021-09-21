@@ -39,7 +39,7 @@
                 Width="200"
                 Content="Список шаблонов"  
                 Command="{Binding GoToCurrentPage}"
-                CommandParameter="Templates" Background="#FF9DE0FF" />
+                CommandParameter="Templates" Background="White" />
             <Button
                 Margin="10 10 0 10"
                 Height="30"

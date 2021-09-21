@@ -48,6 +48,7 @@ namespace NewAirport.VVM.Editor.Library
                 {
                     errorMessage += error.ErrorMessage + "\n";
                 }
+
                 MessageBox.Show(errorMessage);
             }
             else
