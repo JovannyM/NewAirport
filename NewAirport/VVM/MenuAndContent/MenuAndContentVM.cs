@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using NewAirport.Utilites;
+using NewAirport.VVM.Schedule;
 
 namespace NewAirport.VVM.MenuAndContent
 {
@@ -25,6 +26,7 @@ namespace NewAirport.VVM.MenuAndContent
         public RelayCommand GoToCurrentPage =>
             _goToCurrentPage ??= new RelayCommand(obj =>
             {
+                if(obj as string == "Schedule") (AllUserControl.GetUC(ALLUC.ScheduleUC).DataContext as ScheduleVM).GetFlights();
                 CurrentPage = (obj as string) switch
                 {
                     "Schedule" => AllUserControl.GetUC(ALLUC.ScheduleUC),

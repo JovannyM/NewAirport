@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using BLL.Models;
 
@@ -44,6 +45,21 @@ namespace BLL.Repositories
                 ? firstConflictFlight.DepartureDate
                 : firstConflictFlight.ArrivalDate;
             return (false, $"Создание/обновление невозможно так как запланирован конфликтный рейст в {concflictTime}");
+        }
+
+        public override (bool isDeleted, string messages) Delete(int id)
+        {
+            var flight = GetItem(id);
+            if (flight.PairFlight_Id != null)
+            {
+                base.Delete((int)flight.PairFlight_Id);
+                base.Delete(id);
+                return (true,
+                    $"Рейс с номером {id} и парный ему рейс с номером {flight.PairFlight_Id} успешно удалены");
+                
+            }
+            base.Delete(id);
+            return (true, $"Рейс с номером {id} успешно удален");
         }
     }
 }

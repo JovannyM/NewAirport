@@ -31,16 +31,18 @@ namespace BLL.Repositories
             UOW.Save();
         }
 
-        public virtual void Delete(int id)
+        public virtual (bool isDeleted, string messages) Delete(int id)
         {
-            //TODO сделать удаление
             D item = DbSet.Find(id);
             if (item != null)
             {
                 item.IsDeleted = true;
                 DB.Entry(item).State = EntityState.Modified;
                 UOW.Save();
+                return (true, "");
             }
+
+            return (false, "Ни один объект не удален");
         }
 
         public virtual void Update(M model)

@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="900"
              d:DesignWidth="1000"
+             x:Name = "ThisUC"
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -24,13 +25,6 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
-            <Button
-                Grid.Row="0"
-                Margin="10 10 10 0"
-                Content="Обновить" 
-                Background="White" 
-                BorderBrush="#0003A9F4" />
             <ItemsControl
                 Grid.Row="1"
                 Margin="10 0 10 10"
@@ -120,7 +114,10 @@
                                         Padding="-5"
                                         HorizontalAlignment="Right"
                                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                                        Content="Отменить рейс" Background="White" />
+                                        Content="Отменить рейс" 
+                                        Background="White"
+                                        Command="{Binding ElementName=ThisUC, Path=DataContext.CanselFlight}"
+                                        CommandParameter="{Binding Path=Id}"/>
                                 </Grid>
                             </materialDesign:Card.Content>
                         </materialDesign:Card>

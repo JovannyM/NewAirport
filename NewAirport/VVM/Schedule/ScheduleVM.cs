@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using BLL.Models;
 using DAL.Entities;
 using NewAirport.Utilites;
@@ -30,9 +31,18 @@ namespace NewAirport.VVM.Schedule
             DB.OnUpdateDbEvent += (e, a) => { GetFlights(); };
         }
 
-        private void GetFlights()
+        public void GetFlights()
         {
             Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList(true));
         }
+
+        private RelayCommand _cancelFlight;
+
+        public RelayCommand CanselFlight =>
+            _cancelFlight ??= new RelayCommand(obj =>
+            {
+                var message = DB.Flights.Delete((int)obj).messages;
+                MessageBox.Show(message);
+            });
     }
 }
