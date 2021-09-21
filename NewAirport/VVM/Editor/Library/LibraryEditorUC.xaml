@@ -146,7 +146,7 @@
                     Margin="15 10 15 10"
                     CommandParameter="{Binding ElementName=deleteAirportCombo, Path=SelectedItem}"
                     Command="{Binding DeleteAirport}"
-                    Content="Исключить аэропорт" Background="White" BorderBrush="#FFFF4600" />
+                    Content="Исключить аэропорт" Background="White" BorderBrush="#FFFF8000" Foreground="#FFFF8000" />
             </Grid>
         </materialDesign:Card>
 
@@ -250,7 +250,7 @@
                     Grid.ColumnSpan="3"
                     Margin="15 10 15 10"
                     Command="{Binding DeleteAirplane}"
-                    Content="Исключить самолёт" Background="White" BorderBrush="#FFFF4600" />
+                    Content="Исключить самолёт" Background="White" BorderBrush="#FFFF8000" Foreground="#FFFF8000" />
             </Grid>
         </materialDesign:Card>
     </Grid>

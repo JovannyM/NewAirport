@@ -39,7 +39,7 @@ namespace BLL.Repositories
                 item.IsDeleted = true;
                 DB.Entry(item).State = EntityState.Modified;
                 UOW.Save();
-                return (true, "");
+                return (true, "Объект успешно удален");
             }
 
             return (false, "Ни один объект не удален");

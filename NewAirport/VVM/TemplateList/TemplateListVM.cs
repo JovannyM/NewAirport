@@ -43,5 +43,14 @@ namespace NewAirport.VVM.TemplateList
             var message = DB.Flights.CreateFlightsByTemplate(templateId);
             MessageBox.Show(message);
         });
+
+        private RelayCommand _deleteTemplate;
+        public RelayCommand DeleteTemplate =>
+            _deleteTemplate ??= new RelayCommand(obj =>
+            {
+                if(MessageBox.Show("Вы действительно хотите удалить этот шаблон?", "Вопрос на засыпку", MessageBoxButton.YesNo) == MessageBoxResult.No) return;
+                var message = DB.Templates.Delete((int)obj).messages;
+                MessageBox.Show(message);
+            });
     }
 }

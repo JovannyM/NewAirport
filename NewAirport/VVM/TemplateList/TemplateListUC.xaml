@@ -99,7 +99,7 @@
                                     Width="150"
                                     Content="Удалить шаблон"
                                     CommandParameter="{Binding Id}"
-                                    Command="{Binding ElementName=ThisUC, Path=DataContext.DeleteTemplate }" Background="White" BorderBrush="#FFFF6800" Foreground="#FFFF4600" />
+                                    Command="{Binding ElementName=ThisUC, Path=DataContext.DeleteTemplate }" Background="White" BorderBrush="#FFFF8000" Foreground="#FFFF8000" />
 
                             </StackPanel>
 
