@@ -56,7 +56,7 @@ namespace BLL.Repositories
 
         public virtual List<M> GetList()    //TODO Убрать из списков удалённое(не забыть про переопределения этого метода)
         {
-            var listD = DbSet.ToList();
+            var listD = DbSet.Where(d=>d.IsDeleted==false).ToList();
             var listModels = toModel.Map<List<D>, List<M>>(listD);
             return listModels;
         }

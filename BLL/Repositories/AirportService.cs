@@ -46,6 +46,13 @@ namespace BLL.Repositories
         }
 
         public event EventHandler OnSelectedAirport;
+        public List<AirportModel> GetList(bool withoutMain)
+        {
+            if (!withoutMain) return base.GetList();
+            var listD = DbSet.Where(a => a.Id != MainAirport.Id && a.IsDeleted==false).ToList();
+            var listModels = toModel.Map<List<Airport>, List<AirportModel>>(listD);
+            return listModels;
+        }
 
         public int TimeBetweenFlights
         {
@@ -56,14 +63,7 @@ namespace BLL.Repositories
                 return ret;
             }
         }
-
-        public List<AirportModel> GetListWithoutMain()
-        {
-            var listD = DbSet.Where(a => a.Id != MainAirport.Id).ToList();
-            var listModels = toModel.Map<List<Airport>, List<AirportModel>>(listD);
-            return listModels;
-        }
-
+        
         // public override List<AirportModel> GetList()
         // {
         //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();

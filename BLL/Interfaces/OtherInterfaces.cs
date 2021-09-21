@@ -9,9 +9,10 @@ namespace BLL.Interfaces
     {
         public AirportModel MainAirport { get; }
         public int TimeBetweenFlights { get; }
-        public List<AirportModel> GetListWithoutMain();
+
         public void SetMainAirportId(int id);
         public event EventHandler OnSelectedAirport;
+        public List<AirportModel> GetList(bool withoutMain);
     }
 
     public interface IFlightRepository : IService<FlightModel>

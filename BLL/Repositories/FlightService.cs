@@ -162,7 +162,7 @@ namespace BLL.Repositories
         public List<FlightModel> GetList(bool sortByDate)
         {
             if (!sortByDate) return base.GetList();
-            var listD = DB.Flights.OrderBy(f => f.DepartureDate).ToList();
+            var listD = DB.Flights.Where(f=>f.IsDeleted==false).OrderBy(f => f.DepartureDate).ToList();
             var listModels = toModel.Map<List<Flight>,List<FlightModel>>(listD);
             return listModels;
         }
