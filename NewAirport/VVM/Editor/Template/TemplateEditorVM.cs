@@ -6,9 +6,9 @@ using System.Windows.Forms;
 using BLL.Models;
 using NewAirport.Utilites;
 
-namespace NewAirport.VVM.Editer.ModelEditer
+namespace NewAirport.VVM.Editor.Template
 {
-    public partial class ModelEditerVM : BaseVM
+    public partial class TemplateEditorVM : BaseVM
     {
         private RecurringFlightsTemplateModel _currentTemplate;
 
@@ -51,7 +51,7 @@ namespace NewAirport.VVM.Editer.ModelEditer
             get => DayOfWeekModel.DaysOfWeek;
         }
 
-        public ModelEditerVM()
+        public TemplateEditorVM()
         {
             LoadFromDB();
             DB.OnUpdateDbEvent += (object sender, EventArgs e) => LoadFromDB();

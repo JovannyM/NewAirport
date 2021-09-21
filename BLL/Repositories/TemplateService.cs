@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
 using DAL.Context;

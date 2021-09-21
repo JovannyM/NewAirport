@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DAL.Entities;
 using ReactiveUI.Fody.Helpers;
 
 namespace BLL.Models

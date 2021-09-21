@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BLL.Models;
-using DAL.Entities;
 
 namespace BLL.Interfaces
 {

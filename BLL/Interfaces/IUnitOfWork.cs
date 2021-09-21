@@ -1,7 +1,5 @@
 ﻿using System;
 using BLL.Models;
-using BLL.Repositories;
-using DAL.Entities;
 
 namespace BLL.Interfaces
 {

@@ -1,14 +1,8 @@
-﻿using System;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
-    public class BaseEntity: ICloneable
+    public class BaseEntity
     {
         public int Id { get; set; }
         public bool IsDeleted { get; set; } 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
     }
 }

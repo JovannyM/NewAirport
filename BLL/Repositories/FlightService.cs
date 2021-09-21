@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using BLL.Interfaces;
@@ -45,23 +44,11 @@ namespace BLL.Repositories
                         {
                             opt.MapFrom((d, m) =>
                             {
-                                /////////////////////////////////////////
-                                if (d.IsDeparture)
-                                {
-                                    var range = (d.DepartureDate - DateTime.Now).Hours;
-                                    if (range > 3) return String.Empty;
-                                    if (range > 0) return "Подготовка";
-                                    if (d.ArrivalDate < DateTime.Now) return "Приземлился";
-                                    return "Вылетел";
-                                }
-                                else
-                                {
-                                    var range = (d.DepartureDate - DateTime.Now).Hours;
-                                    if (range > 3) return String.Empty;
-                                    if (range >= 0) return "Подготовка";
-                                    if (d.ArrivalDate < DateTime.Now) return "Приземлился";
-                                    return "Вылетел";
-                                }
+                                var range = (d.DepartureDate - DateTime.Now);
+                                if (range > new TimeSpan(3, 0, 0)) return String.Empty;
+                                if (range >= new TimeSpan(0, 0, 0)) return "Подготовка";
+                                if (d.ArrivalDate < DateTime.Now) return "Приземлился";
+                                return "Вылетел";
                             });
                         });
                     cfg.CreateMap<Airplane, AirplaneModel>();
@@ -74,9 +61,7 @@ namespace BLL.Repositories
 
         public string CreateFlightsByTemplate(int templateId)
         {
-            
-            //TODO Сделать проверку на веденные данные (если ли они вообще?, хъотели в конктрутор создавать каждый раз новый current template)
-            string message = "";
+            string message = String.Empty;
             var template = DB.RecurringFlightsTemplates.Find(templateId);
 
             DateTime PossibleFirstFlightArrivalDate = template.StartDateOfCreatingFlights;
@@ -156,8 +141,10 @@ namespace BLL.Repositories
                 }
                 else
                 {
-                    message += $"Невозможно создать прибытие, потому что {arrivalFlightFromFirstCity.ArrivalDate} запланирован рейс\n";
-                    message += $"Невозможно создать отправление, потому что {departureFlightToSecondCity.ArrivalDate} запланирован рейс\n";
+                    message +=
+                        $"Невозможно создать прибытие, потому что {arrivalFlightFromFirstCity.ArrivalDate} запланирован рейс\n";
+                    message +=
+                        $"Невозможно создать отправление, потому что {departureFlightToSecondCity.ArrivalDate} запланирован рейс\n";
                 }
 
                 firstFlightDepartureDate = firstFlightDepartureDate.AddDays(7);
@@ -166,7 +153,9 @@ namespace BLL.Repositories
                 secondFlightArrivalDate = secondFlightArrivalDate.AddDays(7);
             }
 
-            return message.Length>0? message:"Рейсы не были добавлены, так как в этот промежуток времени все рейсы этого шаблона уже есть";
+            return message.Length > 0
+                ? message
+                : "Рейсы не были добавлены, так как в этот промежуток времени все рейсы этого шаблона уже есть";
         }
 
         public (bool isCreate, string message) CheckAndUpdate(FlightModel flight)
@@ -177,20 +166,21 @@ namespace BLL.Repositories
                 this.Update(flight);
                 return (true, "Успешно обновлено");
             }
+
             return (checker);
         }
 
         public List<FlightModel> GetList(bool sortByDate)
         {
             if (!sortByDate) return base.GetList();
-            var listD = DB.Flights.Where(f=>f.IsDeleted==false).OrderBy(f => f.DepartureDate).ToList();
-            listD = listD.Where(f => 
+            var listD = DB.Flights.Where(f => f.IsDeleted == false).OrderBy(f => f.DepartureDate).ToList();
+            listD = listD.Where(f =>
             {
                 if (f.IsDeparture && f.DepartureDate < DateTime.Now.AddHours(-1)) return false;
                 else if (!f.IsDeparture && f.ArrivalDate < DateTime.Now.AddHours(-1)) return false;
                 return true;
             }).ToList();
-            var listModels = toModel.Map<List<Flight>,List<FlightModel>>(listD);
+            var listModels = toModel.Map<List<Flight>, List<FlightModel>>(listD);
             return listModels;
         }
     }

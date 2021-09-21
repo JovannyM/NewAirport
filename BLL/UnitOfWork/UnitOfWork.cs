@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
 using BLL.Interfaces;
 using BLL.Models;
 using BLL.Repositories;
 using DAL.Context;
-using DAL.Entities;
 
 namespace BLL.UnitOfWork
 {

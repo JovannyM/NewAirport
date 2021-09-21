@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace NewAirport.VVM.Editer.ModelEditer
+namespace NewAirport.VVM.Editor.Template
 {
-    public partial class ModelEditerVM
+    public partial class TemplateEditorVM
     {
         public DateTime DepartureTimeFromFirstCity
         {

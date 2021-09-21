@@ -1,9 +1,9 @@
 ﻿using NewAirport.VVM.Editer;
-using NewAirport.VVM.Editer.ModelEditer;
 using NewAirport.VVM.Editor.Schedule;
 using NewAirport.VVM.Schedule;
 using System.Windows.Controls;
 using NewAirport.VVM.Editor.Libruary;
+using NewAirport.VVM.Editor.Template;
 using NewAirport.VVM.MenuAndContent;
 using NewAirport.VVM.SelectCurrentCity;
 using NewAirport.VVM.TemplateList;
@@ -16,7 +16,7 @@ namespace NewAirport.Utilites
         MenuAndContentUC,
         ScheduleUC,
         EditerUC,
-        ModelEditerUC,
+        TemplateEditorUC,
         ScheduleEditerUC,
         TemplatesUC,
         LibraryEditerUC
@@ -28,7 +28,7 @@ namespace NewAirport.Utilites
         private MenuAndContentUC menuUC;
         private ScheduleUC scheduleUC;
         private EditerUC editerUC;
-        private ModelEditerUC modelEditerUC;
+        private TemplateEditorUC _templateEditorUC;
         private ScheduleEditerUC scheduleEditerUC;
         private LibraryEditorUC _libraryEditorUc;
 
@@ -40,7 +40,7 @@ namespace NewAirport.Utilites
                 ALLUC.MenuAndContentUC => menuUC ??= new MenuAndContentUC(),
                 ALLUC.ScheduleUC => scheduleUC ??= new ScheduleUC(),
                 ALLUC.EditerUC => editerUC ??= new EditerUC(),
-                ALLUC.ModelEditerUC => modelEditerUC ??= new ModelEditerUC(),
+                ALLUC.TemplateEditorUC => _templateEditorUC ??= new TemplateEditorUC(),
                 ALLUC.ScheduleEditerUC => scheduleEditerUC ??= new ScheduleEditerUC(),
                 ALLUC.TemplatesUC => templateListUC ??= new TemplateListUC(),
                 ALLUC.LibraryEditerUC => _libraryEditorUc ??= new LibraryEditorUC(),

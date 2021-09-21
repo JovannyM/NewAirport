@@ -34,7 +34,7 @@ namespace NewAirport.VVM.Editer
                 {
                     "ScheduleEditer" => AllUserControl.GetUC(ALLUC.ScheduleEditerUC),
                     "Templates" => AllUserControl.GetUC(ALLUC.TemplatesUC),
-                    "CreateTemplate" => AllUserControl.GetUC(ALLUC.ModelEditerUC),
+                    "CreateTemplate" => AllUserControl.GetUC(ALLUC.TemplateEditorUC),
                     _ => throw new System.NotImplementedException()
                 };
             });

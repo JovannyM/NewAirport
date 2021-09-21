@@ -106,13 +106,10 @@
         <Compile Include="Repositories\AbstractService.cs" />
         <Compile Include="Repositories\AirplaneService.cs" />
         <Compile Include="Repositories\AirportService.cs" />
-        <Compile Include="Repositories\FlightRepos.cs" />
         <Compile Include="Repositories\FlightService.cs" />
         <Compile Include="Repositories\FlightServicePartial.cs" />
-        <Compile Include="Repositories\Repositories.cs" />
         <Compile Include="Repositories\TemplateService.cs" />
         <Compile Include="UnitOfWork\UnitOfWork.cs" />
-        <Compile Include="Utilites\FlightStatus.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

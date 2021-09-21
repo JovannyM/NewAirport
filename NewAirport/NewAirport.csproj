@@ -148,10 +148,6 @@
     <Compile Include="Utilites\IAllUserControl.cs" />
     <Compile Include="Utilites\IoC.cs" />
     <Compile Include="Utilites\NinjectRegistration.cs" />
-    <Compile Include="VVM\Additional\DateTimePickerVM.cs" />
-    <Compile Include="VVM\Additional\DateTimePickerWin.xaml.cs">
-      <DependentUpon>DateTimePickerWin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="VVM\Editor\EditorUC.xaml.cs">
       <DependentUpon>EditorUC.xaml</DependentUpon>
     </Compile>
@@ -161,11 +157,11 @@
       <DependentUpon>LibraryEditorUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\Editor\Library\LibraryEditorVM.cs" />
-    <Compile Include="VVM\Editor\Model\ModelEditorTimePartialVM.cs" />
-    <Compile Include="VVM\Editor\Model\ModelEditorUC.xaml.cs">
-      <DependentUpon>ModelEditorUC.xaml</DependentUpon>
+    <Compile Include="VVM\Editor\Template\TemplateEditorTimePartialVM.cs" />
+    <Compile Include="VVM\Editor\Template\TemplateEditorUC.xaml.cs">
+      <DependentUpon>TemplateEditorUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VVM\Editor\Model\ModelEditorVM.cs" />
+    <Compile Include="VVM\Editor\Template\TemplateEditorVM.cs" />
     <Compile Include="VVM\Editor\Schedule\ScheduleCreateVM.cs" />
     <Compile Include="VVM\Editor\Schedule\ScheduleEditorUC.xaml.cs">
       <DependentUpon>ScheduleEditorUC.xaml</DependentUpon>
@@ -197,12 +193,11 @@
       <DependentUpon>TemplateListUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="VVM\TemplateList\TemplateListVM.cs" />
-    <Page Include="VVM\Additional\DateTimePickerWin.xaml" />
     <Page Include="VVM\Editor\EditorUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="VVM\Editor\Library\LibraryEditorUC.xaml" />
-    <Page Include="VVM\Editor\Model\ModelEditorUC.xaml">
+    <Page Include="VVM\Editor\Template\TemplateEditorUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="VVM\Editor\Schedule\ScheduleEditorUC.xaml">

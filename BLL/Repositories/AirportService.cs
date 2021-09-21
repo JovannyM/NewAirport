@@ -63,12 +63,5 @@ namespace BLL.Repositories
                 return ret;
             }
         }
-        
-        // public override List<AirportModel> GetList()
-        // {
-        //     var listD = DbSet.Where(a=>a.Id != MainAirport.Id).ToList();
-        //     var listModels = toModel.Map<List<Airport>,List<AirportModel>>(listD);
-        //     return listModels;
-        // }
     }
 }
