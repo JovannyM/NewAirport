@@ -47,7 +47,6 @@ namespace BLL.Repositories
 
         public virtual void Update(M model)
         {
-            //TODO ссылка на объект не указывает на экземпляр объекта
             D updatedItem = DbSet.Find(model.Id);
             toDal.Map<M, D>(model, updatedItem);
             DB.Entry(updatedItem).State = EntityState.Modified;

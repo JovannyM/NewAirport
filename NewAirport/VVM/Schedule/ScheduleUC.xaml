@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="900"
              d:DesignWidth="1000"
-             x:Name = "ThisUC"
+             x:Name="ThisUcVariable"
 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -116,8 +116,15 @@
                                         Style="{StaticResource MaterialDesignRaisedAccentButton}"
                                         Content="Отменить рейс" 
                                         Background="White"
-                                        Command="{Binding ElementName=ThisUC, Path=DataContext.CanselFlight}"
+                                        Command="{Binding ElementName=ThisUcVariable, Path=DataContext.CancelFlight}"
                                         CommandParameter="{Binding Path=Id}" Foreground="#FFFF8000" BorderBrush="#FFFF8000"/>
+                                    <TextBlock
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                        Grid.Column="2"
+                                        Grid.Row="0"
+                                        Text="{Binding Status}"/>
                                 </Grid>
                             </materialDesign:Card.Content>
                         </materialDesign:Card>

@@ -32,6 +32,8 @@ namespace BLL.Models
         [Reactive] public DateTime ArrivalDate { get; set; }
         [Reactive] public bool IsDeparture { get; set; }
         [Reactive] public bool Edited { get; set; }
+        
+        [Reactive] public string Status { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -39,6 +41,11 @@ namespace BLL.Models
             if (DepartureDate > ArrivalDate)
                 errors.Add(new ValidationResult("Дата отправления не может быть больше даты прибытия"));
             return errors;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}, из {DepartureAirport.Name} в {ArrivalAirport.Name}, отправление: {DepartureDate}";
         }
     }
 }

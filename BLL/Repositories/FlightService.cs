@@ -24,8 +24,6 @@ namespace BLL.Repositories
                     .ForMember("Airplane", opt => opt.Ignore())
                     .ForMember("Airport", opt => opt.Ignore())
                     .ForMember("RecurringFlightsTemplate", opt => opt.Ignore());
-                cfg.CreateMap<AirplaneModel, Airplane>();
-                cfg.CreateMap<AirportModel, Airport>();
             });
             this.toDal = new Mapper(toDalConfig);
             var toModelConfig = new MapperConfiguration(cfg =>
@@ -42,7 +40,30 @@ namespace BLL.Repositories
                             opt =>
                             {
                                 opt.MapFrom((d, m) => { return d.IsDeparture ? m.Airport : UOW.Airports.MainAirport; });
+                            })
+                        .ForMember("Status", opt =>
+                        {
+                            opt.MapFrom((d, m) =>
+                            {
+                                /////////////////////////////////////////
+                                if (d.IsDeparture)
+                                {
+                                    var range = (d.DepartureDate - DateTime.Now).Hours;
+                                    if (range > 3) return String.Empty;
+                                    if (range > 0) return "Подготовка";
+                                    if (d.ArrivalDate < DateTime.Now) return "Приземлился";
+                                    return "Вылетел";
+                                }
+                                else
+                                {
+                                    var range = (d.DepartureDate - DateTime.Now).Hours;
+                                    if (range > 3) return String.Empty;
+                                    if (range >= 0) return "Подготовка";
+                                    if (d.ArrivalDate < DateTime.Now) return "Приземлился";
+                                    return "Вылетел";
+                                }
                             });
+                        });
                     cfg.CreateMap<Airplane, AirplaneModel>();
                     cfg.CreateMap<Airport, AirportModel>();
                 }
@@ -163,6 +184,12 @@ namespace BLL.Repositories
         {
             if (!sortByDate) return base.GetList();
             var listD = DB.Flights.Where(f=>f.IsDeleted==false).OrderBy(f => f.DepartureDate).ToList();
+            listD = listD.Where(f => 
+            {
+                if (f.IsDeparture && f.DepartureDate < DateTime.Now.AddHours(-1)) return false;
+                else if (!f.IsDeparture && f.ArrivalDate < DateTime.Now.AddHours(-1)) return false;
+                return true;
+            }).ToList();
             var listModels = toModel.Map<List<Flight>,List<FlightModel>>(listD);
             return listModels;
         }

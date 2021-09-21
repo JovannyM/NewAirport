@@ -57,8 +57,7 @@
                     materialDesign:HintAssist.HintOpacity=".26"
                     IsEditable="True"
                     ItemsSource="{Binding ListOfFlights}"
-                    SelectedItem="{Binding UpdatedFlight}"
-                    DisplayMemberPath="Id" />
+                    SelectedItem="{Binding UpdatedFlight}"/>
 
 
                 <TextBlock

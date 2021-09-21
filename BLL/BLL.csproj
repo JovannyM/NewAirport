@@ -112,6 +112,7 @@
         <Compile Include="Repositories\Repositories.cs" />
         <Compile Include="Repositories\TemplateService.cs" />
         <Compile Include="UnitOfWork\UnitOfWork.cs" />
+        <Compile Include="Utilites\FlightStatus.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

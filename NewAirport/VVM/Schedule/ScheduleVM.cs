@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using BLL.Models;
-using DAL.Entities;
-using Microsoft.Build.Tasks;
 using NewAirport.Utilites;
-using NewAirport.VVM.Additional;
 
 namespace NewAirport.VVM.Schedule
 {
@@ -28,7 +21,7 @@ namespace NewAirport.VVM.Schedule
 
         public ScheduleVM()
         {
-            Flights = new ObservableCollection<FlightModel>(DB.Flights.GetList());
+            GetFlights();
             DB.OnUpdateDbEvent += (e, a) => { GetFlights(); };
         }
 
@@ -39,11 +32,12 @@ namespace NewAirport.VVM.Schedule
 
         private RelayCommand _cancelFlight;
 
-        public RelayCommand CanselFlight =>
+        public RelayCommand CancelFlight =>
             _cancelFlight ??= new RelayCommand(obj =>
             {
-                if(MessageBox.Show("Вы действительно хотите удалить этот рейс?", "Вопрос на засыпку", MessageBoxButton.YesNo) == MessageBoxResult.No) return;
-                var message = DB.Flights.Delete((int)obj).messages;
+                if (MessageBox.Show("Вы действительно хотите удалить этот рейс?", "Вопрос на засыпку",
+                    MessageBoxButton.YesNo) == MessageBoxResult.No) return;
+                var message = DB.Flights.Delete((int) obj).messages;
                 MessageBox.Show(message);
             });
     }
