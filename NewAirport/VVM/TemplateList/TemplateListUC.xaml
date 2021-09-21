@@ -44,11 +44,11 @@
                                 <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
 
                             <TextBlock
@@ -78,16 +78,30 @@
                                     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                                     Text="{Binding Airplane.Name}" />
                             </StackPanel>
-                            <Button
+                            <StackPanel
                                 Grid.Row="0"
-                                Grid.Column="4"
+                                Grid.Column="3"
+                                Grid.ColumnSpan="2"
+                                Orientation="Horizontal"
                                 VerticalAlignment="Top"
-                                HorizontalAlignment="Right"
-                                Width="200"
-                                Content="Создать рейсы" 
-                                CommandParameter="{Binding Id}"
-                                Command="{Binding ElementName=ThisUC, Path=DataContext.GenerateFlights }"
-                                />
+                                HorizontalAlignment="Right">
+                                <Button
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right"
+                                    Width="150"
+                                    Content="Создать рейсы"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding ElementName=ThisUC, Path=DataContext.GenerateFlights }" />
+                                <Button
+                                    Margin="10 0 0 0"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right"
+                                    Width="150"
+                                    Content="Удалить шаблон"
+                                    CommandParameter="{Binding Id}"
+                                    Command="{Binding ElementName=ThisUC, Path=DataContext.DeleteTemplate }" Background="White" BorderBrush="#FFFF6800" Foreground="#FFFF4600" />
+
+                            </StackPanel>
 
 
                             <TextBlock

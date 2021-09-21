@@ -117,7 +117,7 @@
                                         Content="Отменить рейс" 
                                         Background="White"
                                         Command="{Binding ElementName=ThisUC, Path=DataContext.CanselFlight}"
-                                        CommandParameter="{Binding Path=Id}"/>
+                                        CommandParameter="{Binding Path=Id}" Foreground="#FFFF4600"/>
                                 </Grid>
                             </materialDesign:Card.Content>
                         </materialDesign:Card>
