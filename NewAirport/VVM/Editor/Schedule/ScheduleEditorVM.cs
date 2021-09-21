@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows;
 using BLL.Models;
@@ -85,8 +87,24 @@ namespace NewAirport.VVM.Editor.Schedule
         public RelayCommand CreateFlight =>
             _createFlight ??= new RelayCommand(obj =>
             {
-                var checker = DB.Flights.CreateFlight(CreatingFlight);
-                MessageBox.Show(checker.message);
+                string errorMessage = "Невозможно добавить самолёт:\n";
+                var results = new List<ValidationResult>();
+                var context = new ValidationContext(CreatingFlight);
+                if (!Validator.TryValidateObject(CreatingFlight, context, results, true))
+                {
+                    foreach (var error in results)
+                    {
+                        errorMessage += error.ErrorMessage + "\n";
+                    }
+
+                    MessageBox.Show(errorMessage);
+                }
+                else
+                {
+                    var checker = DB.Flights.CreateFlight(CreatingFlight);
+                    MessageBox.Show(checker.message);
+                }
+              
             });
 
         private RelayCommand _checkAndSave;
@@ -96,8 +114,23 @@ namespace NewAirport.VVM.Editor.Schedule
             {
                 if (UpdatedFlight != null)
                 {
-                    var checker = DB.Flights.CheckAndUpdate(UpdatedFlight);
-                    MessageBox.Show(checker.message);
+                    string errorMessage = "Невозможно обновить самолёт:\n";
+                    var results = new List<ValidationResult>();
+                    var context = new ValidationContext(UpdatedFlight);
+                    if (!Validator.TryValidateObject(UpdatedFlight, context, results, true))
+                    {
+                        foreach (var error in results)
+                        {
+                            errorMessage += error.ErrorMessage + "\n";
+                        }
+
+                        MessageBox.Show(errorMessage);
+                    }
+                    else
+                    {
+                        var checker = DB.Flights.CheckAndUpdate(UpdatedFlight);
+                        MessageBox.Show(checker.message);
+                    }
                 }
             });
     }

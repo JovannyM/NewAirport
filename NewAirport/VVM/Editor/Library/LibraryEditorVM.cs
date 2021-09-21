@@ -53,7 +53,7 @@ namespace NewAirport.VVM.Editor.Library
             else
             {
                 DB.Airplanes.Create(CreatingAirplane);
-                MessageBox.Show("Аэропорт успешно создан");
+                MessageBox.Show("Самолёт успешно создан");
             }
         });
 

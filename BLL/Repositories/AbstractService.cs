@@ -33,9 +33,7 @@ namespace BLL.Repositories
 
         public virtual void Delete(int id)
         {
-            // D item = DbSet.Find(id);
-            // if (item != null) DbSet.Remove(item);
-            // UOW.Save();
+            //TODO сделать удаление
             D item = DbSet.Find(id);
             if (item != null)
             {

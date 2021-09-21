@@ -161,6 +161,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right" />
                 <materialDesign:TimePicker
+                    Is24Hours="True"
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalAlignment="Left"
@@ -179,6 +180,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right" />
                 <materialDesign:TimePicker
+                    Is24Hours="True"
                     Grid.Row="2"
                     Grid.Column="3"
                     HorizontalAlignment="Left"
@@ -276,6 +278,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right" />
                 <materialDesign:TimePicker
+                    Is24Hours="True"
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalAlignment="Left"
@@ -294,6 +297,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right" />
                 <materialDesign:TimePicker
+                    Is24Hours="True"
                     Grid.Row="2"
                     Grid.Column="3"
                     HorizontalAlignment="Left"
@@ -341,6 +345,7 @@
                         materialDesign:HintAssist.Hint="Дата начала"
                         SelectedDateFormat="Short" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding CurrentTemplate.StartDateOfCreatingFlights}"
@@ -358,6 +363,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата окончания" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding CurrentTemplate.EndDateOfCreatingFlights}"

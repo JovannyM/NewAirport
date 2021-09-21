@@ -102,6 +102,7 @@
                         materialDesign:HintAssist.Hint="Дата отправления"
                         SelectedDateFormat="Short" Text="1-1-0001" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding UpdatedFlight.DepartureDate}"
@@ -119,6 +120,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата прибытия" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding UpdatedFlight.ArrivalDate}"
@@ -230,6 +232,7 @@
                         materialDesign:HintAssist.Hint="Дата отправления"
                         SelectedDateFormat="Short" Text="1-1-0001" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding CreatingFlight.DepartureDate}"
@@ -247,6 +250,7 @@
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                         materialDesign:HintAssist.Hint="Дата прибытия" />
                     <materialDesign:TimePicker
+                        Is24Hours="True"
                         Margin="20 0 0 0"
                         Width="150"
                         SelectedTime="{Binding CreatingFlight.ArrivalDate}"
